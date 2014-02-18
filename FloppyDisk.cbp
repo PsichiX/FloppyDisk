@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="FloppyDisk" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/FloppyDisk-d" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="running" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="D:\SDKs\SFML-2.1\lib\libsfml-audio-s-d.a" />
+					<Add library="D:\SDKs\SFML-2.1\lib\libsfml-graphics-s-d.a" />
+					<Add library="D:\SDKs\SFML-2.1\lib\libsfml-window-s-d.a" />
+					<Add library="D:\SDKs\SFML-2.1\lib\libsfml-system-s-d.a" />
+					<Add library="D:\SDKs\Box2D\bin\Debug\libBox2D.a" />
+					<Add library="D:\Git\XenonCore3\XenonCore3\bin\Debug\libXenonCore3-d.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/FloppyDisk" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="running" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="D:\SDKs\SFML-2.1\lib\libsfml-audio-s.a" />
+					<Add library="D:\SDKs\SFML-2.1\lib\libsfml-graphics-s.a" />
+					<Add library="D:\SDKs\SFML-2.1\lib\libsfml-window-s.a" />
+					<Add library="D:\SDKs\SFML-2.1\lib\libsfml-system-s.a" />
+					<Add library="D:\SDKs\Box2D\bin\Release\libBox2D.a" />
+					<Add library="D:\Git\XenonCore3\XenonCore3\bin\Release\libXenonCore3.a" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add option="-DSFML_STATIC" />
+			<Add directory="D:/Git/XenonCore3/XenonCore3/include" />
+			<Add directory="D:/SDKs/Box2D_v2.2.1" />
+			<Add directory="D:/SDKs/SFML-2.1/include" />
+		</Compiler>
+		<Unit filename="Assets.cpp" />
+		<Unit filename="Assets.h" />
+		<Unit filename="Component.cpp" />
+		<Unit filename="Component.h" />
+		<Unit filename="Events.cpp" />
+		<Unit filename="Events.h" />
+		<Unit filename="GameManager.cpp" />
+		<Unit filename="GameManager.h" />
+		<Unit filename="GameObject.cpp" />
+		<Unit filename="GameObject.h" />
+		<Unit filename="Property.h" />
+		<Unit filename="SpriteRenderer.cpp" />
+		<Unit filename="SpriteRenderer.h" />
+		<Unit filename="Transform.cpp" />
+		<Unit filename="Transform.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
