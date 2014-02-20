@@ -1,7 +1,7 @@
 #ifndef __COMPONENT__
 #define __COMPONENT__
 
-#include <XeCore/Common/Base.h>
+#include <XeCore/Common/Property.h>
 #include <XeCore/Common/IRtti.h>
 #include <XeCore/Common/MemoryManager.h>
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -33,6 +33,10 @@ public:
     FORCEINLINE bool isActive() { return m_active; };
     FORCEINLINE void setActive( bool mode = true ) { m_active = mode; };
     FORCEINLINE GameObject* getGameObject() { return m_gameObject; };
+
+    XeCore::Common::Property< Type, Component > TypeFlags;
+    XeCore::Common::Property< bool, Component > Active;
+    XeCore::Common::Property< GameObject*, Component > Owner;
 
 protected:
     virtual void onUpdate( float dt );

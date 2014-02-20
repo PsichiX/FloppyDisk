@@ -18,6 +18,9 @@ public:
     FORCEINLINE sf::RectangleShape* getShape() { return m_shape; };
     FORCEINLINE sf::RenderStates& getRenderStates() { return m_renderStates; };
 
+    XeCore::Common::Property< sf::RectangleShape*, SpriteRenderer > Shape;
+    XeCore::Common::Property< sf::RenderStates&, SpriteRenderer > RenderStates;
+
 protected:
     virtual void onUpdate( float dt );
     virtual void onRender( sf::RenderTarget* target );

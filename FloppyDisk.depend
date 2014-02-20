@@ -614,12 +614,12 @@
 1315167063 d:\sdks\box2d_v2.2.1\box2d\dynamics\joints\b2weldjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1392765998 source:d:\git\floppydisk\component.cpp
+1392843195 source:d:\git\floppydisk\component.cpp
 	"Component.h"
 	"GameObject.h"
 
-1392765924 d:\git\floppydisk\component.h
-	<XeCore/Common/Base.h>
+1392873275 d:\git\floppydisk\component.h
+	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<SFML/Graphics/RenderTarget.hpp>
@@ -667,25 +667,26 @@
 	<XeCore/Common/MemoryManager.h>
 	<map>
 
-1392764332 d:\git\floppydisk\gameobject.h
-	<XeCore/Common/Base.h>
+1392873285 d:\git\floppydisk\gameobject.h
+	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<map>
 	<string>
 
-1392761401 source:d:\git\floppydisk\gamemanager.cpp
+1392843378 source:d:\git\floppydisk\gamemanager.cpp
 	"GameManager.h"
 	"GameObject.h"
 	<Box2D/Box2D.h>
 
-1392757547 d:\git\floppydisk\gamemanager.h
+1392873298 d:\git\floppydisk\gamemanager.h
+	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<list>
 	<string>
 
-1392761258 source:d:\git\floppydisk\gameobject.cpp
+1392843647 source:d:\git\floppydisk\gameobject.cpp
 	"GameObject.h"
 	"Component.h"
 
@@ -709,19 +710,27 @@
 1380902486 d:\git\xenoncore3\xenoncore3\include\xecore\common\concurrent\runnable.h
 	"../MemoryManager.h"
 
-1392765673 source:d:\git\floppydisk\spriterenderer.cpp
+1392844018 source:d:\git\floppydisk\spriterenderer.cpp
 	"SpriteRenderer.h"
 	"Transform.h"
 	"GameObject.h"
 
-1392765310 d:\git\floppydisk\spriterenderer.h
+1392843960 d:\git\floppydisk\spriterenderer.h
 	"Component.h"
 	<SFML/Graphics.hpp>
 
-1392765016 d:\git\floppydisk\transform.h
+1392843797 d:\git\floppydisk\transform.h
 	"Component.h"
 	<SFML/System/Vector2.hpp>
 
-1392765687 source:d:\git\floppydisk\transform.cpp
+1392843870 source:d:\git\floppydisk\transform.cpp
 	"Transform.h"
+
+1392843418 d:\git\floppydisk\property.h
+
+1392873243 d:\git\xenoncore3\xenoncore3\include\xecore\common\property.h
+	"Base.h"
+	"Property.inl"
+
+1392873218 d:\git\xenoncore3\xenoncore3\include\xecore\common\property.inl
 

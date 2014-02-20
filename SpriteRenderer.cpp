@@ -10,6 +10,8 @@ RTTI_CLASS_DERIVATIONS( SpriteRenderer,
 SpriteRenderer::SpriteRenderer( sf::Texture* texture, float width, float height, float pox, float poy )
 : RTTI_CLASS_DEFINE( SpriteRenderer )
 , Component( Component::Update | Component::Render )
+, Shape( this, &SpriteRenderer::getShape, 0 )
+, RenderStates( this, &SpriteRenderer::getRenderStates, 0 )
 , m_renderStates( sf::RenderStates::Default )
 {
     m_shape = xnew sf::RectangleShape(

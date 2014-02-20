@@ -7,6 +7,9 @@ RTTI_CLASS_DERIVATIONS( Component,
 
 Component::Component( Component::Type typeFlags )
 : RTTI_CLASS_DEFINE( Component )
+, TypeFlags( this, &Component::getTypeFlags, 0 )
+, Active( this, &Component::isActive, &Component::setActive )
+, Owner( this, &Component::getGameObject, 0 )
 , m_typeFlags( typeFlags )
 , m_active( true )
 , m_gameObject( 0 )

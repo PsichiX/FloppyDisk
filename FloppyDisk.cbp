@@ -62,7 +62,6 @@
 		<Unit filename="GameManager.h" />
 		<Unit filename="GameObject.cpp" />
 		<Unit filename="GameObject.h" />
-		<Unit filename="Property.h" />
 		<Unit filename="SpriteRenderer.cpp" />
 		<Unit filename="SpriteRenderer.h" />
 		<Unit filename="Transform.cpp" />

@@ -7,6 +7,9 @@ RTTI_CLASS_DERIVATIONS( GameObject,
 
 GameObject::GameObject( const std::string& id )
 : RTTI_CLASS_DEFINE( GameObject )
+, Id( this, &GameObject::getId, &GameObject::setId )
+, Active( this, &GameObject::isActive, &GameObject::setActive )
+, Owner( this, &GameObject::getGameManager, 0 )
 , m_id( id )
 , m_active( true )
 , m_gameManager( 0 )

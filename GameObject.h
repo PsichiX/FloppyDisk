@@ -1,7 +1,7 @@
 #ifndef __ACTOR__
 #define __ACTOR__
 
-#include <XeCore/Common/Base.h>
+#include <XeCore/Common/Property.h>
 #include <XeCore/Common/IRtti.h>
 #include <XeCore/Common/MemoryManager.h>
 #include <map>
@@ -26,7 +26,7 @@ public:
     virtual ~GameObject();
 
     FORCEINLINE std::string getId() { return m_id; };
-    FORCEINLINE void setId( const std::string& id ) { m_id = id; };
+    FORCEINLINE void setId( std::string id ) { m_id = id; };
     FORCEINLINE bool isActive() { return m_active; };
     FORCEINLINE void setActive( bool mode = true ) { m_active = mode; };
     FORCEINLINE GameManager* getGameManager() { return m_gameManager; };
@@ -37,6 +37,10 @@ public:
     bool hasComponent( Component* c );
     bool hasComponent( XeCore::Common::IRtti::Derivation d );
     Component* getComponent( XeCore::Common::IRtti::Derivation d );
+
+    XeCore::Common::Property< std::string, GameObject > Id;
+    XeCore::Common::Property< bool, GameObject > Active;
+    XeCore::Common::Property< GameManager*, GameObject > Owner;
 
 protected:
     void onUpdate( float dt );

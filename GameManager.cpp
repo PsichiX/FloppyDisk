@@ -104,6 +104,7 @@ RTTI_CLASS_DERIVATIONS( GameManager,
 
 GameManager::GameManager( float gravX, float gravY )
 : RTTI_CLASS_DEFINE( GameManager )
+, PhysicsWorld( this, &GameManager::getPhysicsWorld, 0 )
 , m_world( 0 )
 , m_destructionListener( 0 )
 , m_contactListener( 0 )

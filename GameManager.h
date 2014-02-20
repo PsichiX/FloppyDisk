@@ -1,6 +1,7 @@
 #ifndef __GAME_MANAGER__
 #define __GAME_MANAGER__
 
+#include <XeCore/Common/Property.h>
 #include <XeCore/Common/IRtti.h>
 #include <XeCore/Common/MemoryManager.h>
 #include <list>
@@ -29,6 +30,7 @@ public:
     GameManager( float gravX, float gravY );
     ~GameManager();
 
+    FORCEINLINE b2World* getPhysicsWorld() { return m_world; };
     void addGameObject( GameObject* go );
     void removeGameObject( GameObject* go );
     void removeGameObject( const std::string& id );
@@ -36,10 +38,11 @@ public:
     bool hasGameObject( GameObject* go );
     bool hasGameObject( const std::string& id );
     GameObject* getGameObject( const std::string& id );
-    FORCEINLINE b2World* getPhysicsWorld() { return m_world; };
     void processUpdate( float dt );
     void processRender( sf::RenderTarget* target );
     void processPhysics( float dt, int velIters = DEFAULT_VEL_ITERS, int posIters = DEFAULT_POS_ITERS );
+
+    XeCore::Common::Property< b2World*, GameManager > PhysicsWorld;
 
 private:
     b2World* m_world;
