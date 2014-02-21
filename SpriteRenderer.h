@@ -12,7 +12,7 @@ class SpriteRenderer
     RTTI_CLASS_DECLARE( SpriteRenderer );
 
 public:
-    SpriteRenderer( sf::Texture* texture, float width = -1.0f, float height = -1.0f, float pox = 0.5f, float poy = 0.5f );
+    SpriteRenderer();
     virtual ~SpriteRenderer();
 
     FORCEINLINE sf::RectangleShape* getShape() { return m_shape; };

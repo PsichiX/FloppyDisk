@@ -1,14 +1,16 @@
 # depslib dependency file v1.0
-1392757475 source:d:\git\floppydisk\assets.cpp
+1393015923 source:d:\git\floppydisk\assets.cpp
 	"Assets.h"
+	<XeCore/Common/String.h>
 
-1392757320 d:\git\floppydisk\assets.h
+1393015397 d:\git\floppydisk\assets.h
 	<XeCore/Common/Base.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<XeCore/Common/Singleton.h>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
+	<json/json.h>
 	<map>
 
 1388228172 d:\git\xenoncore3\xenoncore3\include\xecore\common\base.h
@@ -614,7 +616,7 @@
 1315167063 d:\sdks\box2d_v2.2.1\box2d\dynamics\joints\b2weldjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1392843195 source:d:\git\floppydisk\component.cpp
+1393017085 source:d:\git\floppydisk\component.cpp
 	"Component.h"
 	"GameObject.h"
 
@@ -634,7 +636,7 @@
 1381165376 d:\git\xenoncore3\xenoncore3\include\xecore\common\string.inl
 	<sstream>
 
-1392765146 source:d:\git\floppydisk\main.cpp
+1393016435 source:d:\git\floppydisk\main.cpp
 	<iostream>
 	<list>
 	<sstream>
@@ -674,15 +676,19 @@
 	<map>
 	<string>
 
-1392843378 source:d:\git\floppydisk\gamemanager.cpp
+1393016259 source:d:\git\floppydisk\gamemanager.cpp
 	"GameManager.h"
 	"GameObject.h"
+	"Assets.h"
 	<Box2D/Box2D.h>
+	<fstream>
+	<list>
 
-1392873298 d:\git\floppydisk\gamemanager.h
+1393011289 d:\git\floppydisk\gamemanager.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
+	<json/json.h>
 	<list>
 	<string>
 
@@ -710,20 +716,20 @@
 1380902486 d:\git\xenoncore3\xenoncore3\include\xecore\common\concurrent\runnable.h
 	"../MemoryManager.h"
 
-1392844018 source:d:\git\floppydisk\spriterenderer.cpp
+1392941504 source:d:\git\floppydisk\spriterenderer.cpp
 	"SpriteRenderer.h"
 	"Transform.h"
 	"GameObject.h"
 
-1392873319 d:\git\floppydisk\spriterenderer.h
+1392941579 d:\git\floppydisk\spriterenderer.h
 	"Component.h"
 	<SFML/Graphics.hpp>
 
-1392873311 d:\git\floppydisk\transform.h
+1392941392 d:\git\floppydisk\transform.h
 	"Component.h"
 	<SFML/System/Vector2.hpp>
 
-1392843870 source:d:\git\floppydisk\transform.cpp
+1392941435 source:d:\git\floppydisk\transform.cpp
 	"Transform.h"
 
 1392843418 d:\git\floppydisk\property.h
@@ -733,4 +739,47 @@
 	"Property.inl"
 
 1392873218 d:\git\xenoncore3\xenoncore3\include\xecore\common\property.inl
+
+1268379095 d:\sdks\jsoncpp-src-0.5.0\include\json\json.h
+	"autolink.h"
+	"value.h"
+	"reader.h"
+	"writer.h"
+	"features.h"
+
+1268379095 d:\sdks\jsoncpp-src-0.5.0\include\json\autolink.h
+	"config.h"
+	<cpptl/cpptl_autolink.h>
+	"autolink.h"
+
+1268379095 d:\sdks\jsoncpp-src-0.5.0\include\json\config.h
+	<cpptl/config.h>
+
+1268379095 d:\sdks\jsoncpp-src-0.5.0\include\json\value.h
+	"forwards.h"
+	<string>
+	<vector>
+	<map>
+	<cpptl/smallmap.h>
+	<cpptl/forwards.h>
+
+1268379095 d:\sdks\jsoncpp-src-0.5.0\include\json\forwards.h
+	"config.h"
+
+1268379095 d:\sdks\jsoncpp-src-0.5.0\include\json\reader.h
+	"features.h"
+	"value.h"
+	<deque>
+	<stack>
+	<string>
+	<iostream>
+
+1268379095 d:\sdks\jsoncpp-src-0.5.0\include\json\features.h
+	"forwards.h"
+
+1268379095 d:\sdks\jsoncpp-src-0.5.0\include\json\writer.h
+	"value.h"
+	<vector>
+	<string>
+	<iostream>
 

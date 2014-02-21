@@ -12,7 +12,7 @@ class Transform
     RTTI_CLASS_DECLARE( Transform );
 
 public:
-    Transform( sf::Vector2f pos = sf::Vector2f(), float rot = 0.0f, sf::Vector2f scl = sf::Vector2f( 1.0f, 1.0f ) );
+    Transform();
     virtual ~Transform();
 
     FORCEINLINE sf::Vector2f getPosition() { return m_position; };

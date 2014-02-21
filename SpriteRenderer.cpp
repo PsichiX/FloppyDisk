@@ -7,21 +7,14 @@ RTTI_CLASS_DERIVATIONS( SpriteRenderer,
                         RTTI_DERIVATIONS_END
                         )
 
-SpriteRenderer::SpriteRenderer( sf::Texture* texture, float width, float height, float pox, float poy )
+SpriteRenderer::SpriteRenderer()
 : RTTI_CLASS_DEFINE( SpriteRenderer )
 , Component( Component::Update | Component::Render )
 , Shape( this, &SpriteRenderer::getShape, 0 )
 , RenderStates( this, &SpriteRenderer::getRenderStates, 0 )
 , m_renderStates( sf::RenderStates::Default )
 {
-    m_shape = xnew sf::RectangleShape(
-        texture ?
-        sf::Vector2f( width < 0.0f ? texture->getSize().x : width, height < 0.0f ? texture->getSize().y : height ) :
-        sf::Vector2f( std::max( 0.0f, width ), std::max( 0.0f, height ) )
-    );
-    m_shape->setOrigin( m_shape->getSize().x * pox, m_shape->getSize().y * poy );
-    if( texture )
-        m_shape->setTexture( texture );
+    m_shape = xnew sf::RectangleShape();
 }
 
 SpriteRenderer::~SpriteRenderer()

@@ -1,0 +1,40 @@
+{
+	"assets": {
+		"textures": [
+			{
+				"id": "floppy",
+				"path": "assets/textures/floppy.png"
+			},
+			{
+				"id": "magnet",
+				"path": "assets/textures/magnet.png"
+			}
+		],
+		"fonts": [
+			{
+				"id": "font",
+				"path": "assets/fonts/CONTF.ttf"
+			}
+		]
+	},
+	"prefabs": [
+		{
+			"Id": "floppy",
+			"components": [
+				{
+					"component": "Transform",
+					"Position": { 512, 288 }
+				},
+				{
+					"component": "SpriteRenderer",
+					"Texture": "floppy"
+				}
+			]
+		}
+	],
+	"scene": [
+		{
+			"prefab": "floppy"
+		}
+	]
+}

@@ -36,19 +36,9 @@ int main()
     );
     camera->zoom( 0.5f );
 
-    /// assets
-    Assets::use().loadFont( "font", "assets/fonts/CONTF.ttf" );
-    Assets::use().loadTexture( "floppy", "assets/textures/floppy.png" );
-    Assets::use().loadTexture( "magnet", "assets/textures/magnet.png" );
-
     /// game manager
     GameManager* gameManager = xnew GameManager( 10.0f, 0.0f );
-
-    /// game objects
-    GameObject* floppy = xnew GameObject( "floppy" );
-    floppy->addComponent( xnew Transform( sf::Vector2f( camera->getCenter() ) ) );
-    floppy->addComponent( xnew SpriteRenderer( Assets::use().getTexture( "floppy" ) ) );
-    gameManager->addGameObject( floppy );
+    gameManager->jsonToScene( gameManager->loadJson( "assets/scenes/game.json" ) );
 
     /// main loop
     srand( time( 0 ) );

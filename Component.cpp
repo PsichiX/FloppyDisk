@@ -33,4 +33,7 @@ void Component::setGameObject( GameObject* gameObject )
     m_gameObject = gameObject;
 }
 
-Component::Type operator|( Component::Type a, Component::Type b ) { return (Component::Type)( (int)a | (int)b ); };
+Component::Type operator|( Component::Type a, Component::Type b )
+{
+    return (Component::Type)( (int)a | (int)b );
+};

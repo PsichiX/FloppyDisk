@@ -1,6 +1,9 @@
 #include "GameManager.h"
 #include "GameObject.h"
+#include "Assets.h"
 #include <Box2D/Box2D.h>
+#include <fstream>
+#include <list>
 
 class DestructionListener
     : public virtual XeCore::Common::IRtti
@@ -119,67 +122,137 @@ GameManager::~GameManager()
     DELETE_OBJECT( m_world );
     DELETE_OBJECT( m_destructionListener );
     DELETE_OBJECT( m_contactListener );
-    removeAllGameObjects();
+    removeScene();
 }
 
-void GameManager::addGameObject( GameObject* go )
+Json::Value GameManager::loadJson( const std::string& path )
 {
-    if( !go || hasGameObject( go ) )
+    std::ifstream file( path.c_str(), std::ifstream::in | std::ifstream::binary );
+    if( !file )
+        return Json::Value::null;
+    file.seekg( 0, std::ifstream::end );
+    unsigned int fsize = file.tellg();
+    file.seekg( 0, std::ifstream::beg );
+    std::string content;
+    content.resize( fsize + 1, 0 );
+    file.read( (char*)content.c_str(), fsize );
+    file.close();
+    Json::Value root;
+    Json::Reader reader;
+    reader.parse( content, root );
+    return root;
+}
+
+bool GameManager::saveJson( const std::string& path, const Json::Value& root )
+{
+    std::ofstream file( path.c_str(), std::ifstream::out | std::ifstream::binary );
+    if( !file )
+        return false;
+    Json::StyledWriter writer;
+    std::string content = writer.write( root );
+    file.write( content.c_str(), content.length() );
+    file.close();
+    return true;
+}
+
+void GameManager::jsonToScene( const Json::Value& root, SceneContentType contentFlags )
+{
+    if( contentFlags == GameManager::None || !root.isObject() )
         return;
-    m_gameObjects.push_back( go );
+    Json::Value assets = root[ "assets" ];
+    if( contentFlags & GameManager::Assets && assets.isObject() )
+        Assets::use().jsonToAssets( assets );
+    Json::Value prefabs = root[ "prefabs" ];
+    Json::Value scene = root[ "scene" ];
+}
+
+Json::Value GameManager::sceneToJson( SceneContentType contentFlags )
+{
+    Json::Value root;
+    if( contentFlags & GameManager::Assets )
+    {
+        Json::Value assets = Assets::use().assetsToJson();
+        if( !assets.isNull() )
+            root[ "assets" ] = assets;
+    }
+    return root;
+}
+
+void GameManager::removeScene( SceneContentType contentFlags )
+{
+    if( contentFlags & GameManager::Assets )
+        Assets::use().freeAll();
+    if( contentFlags & GameManager::PrefabGameObjects )
+        removeAllGameObjects();
+    if( contentFlags & GameManager::GameObjects )
+        removeAllGameObjects( true );
+}
+
+void GameManager::addGameObject( GameObject* go, bool prefab )
+{
+    if( !go || hasGameObject( go, prefab ) )
+        return;
+    std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
+    cgo.push_back( go );
     go->setGameManager( this );
 }
 
-void GameManager::removeGameObject( GameObject* go )
+void GameManager::removeGameObject( GameObject* go, bool prefab )
 {
-    if( !hasGameObject( go ) )
+    if( !hasGameObject( go, prefab ) )
         return;
-    m_gameObjects.remove( go );
+    std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
+    cgo.remove( go );
     go->setGameManager( 0 );
     DELETE_OBJECT( go );
 }
 
-void GameManager::removeGameObject( const std::string& id )
+void GameManager::removeGameObject( const std::string& id, bool prefab )
 {
-    GameObject* go = getGameObject( id );
+    GameObject* go = getGameObject( id, prefab );
     if( !go )
         return;
-    m_gameObjects.remove( go );
+    std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
+    cgo.remove( go );
     go->setGameManager( 0 );
     DELETE_OBJECT( go );
 }
 
-void GameManager::removeAllGameObjects()
+void GameManager::removeAllGameObjects( bool prefab )
 {
     GameObject* go;
-    for( std::list< GameObject* >::iterator it = m_gameObjects.begin(); it != m_gameObjects.end(); it++ )
+    std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
+    for( std::list< GameObject* >::iterator it = cgo.begin(); it != cgo.end(); it++ )
     {
         go = *it;
         go->setGameManager( 0 );
         DELETE_OBJECT( *it );
     }
-    m_gameObjects.clear();
+    cgo.clear();
 }
 
-bool GameManager::hasGameObject( GameObject* go )
+bool GameManager::hasGameObject( GameObject* go, bool prefab )
 {
-    for( std::list< GameObject* >::iterator it = m_gameObjects.begin(); it != m_gameObjects.end(); it++ )
+    std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
+    for( std::list< GameObject* >::iterator it = cgo.begin(); it != cgo.end(); it++ )
         if( *it == go )
             return true;
     return false;
 }
 
-bool GameManager::hasGameObject( const std::string& id )
+bool GameManager::hasGameObject( const std::string& id, bool prefab )
 {
-    for( std::list< GameObject* >::iterator it = m_gameObjects.begin(); it != m_gameObjects.end(); it++ )
+    std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
+    for( std::list< GameObject* >::iterator it = cgo.begin(); it != cgo.end(); it++ )
         if( (*it)->getId() == id )
             return true;
     return false;
 }
 
-GameObject* GameManager::getGameObject( const std::string& id )
+GameObject* GameManager::getGameObject( const std::string& id, bool prefab )
 {
-    for( std::list< GameObject* >::iterator it = m_gameObjects.begin(); it != m_gameObjects.end(); it++ )
+    std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
+    for( std::list< GameObject* >::iterator it = cgo.begin(); it != cgo.end(); it++ )
         if( (*it)->getId() == id )
             return *it;
     return 0;
@@ -211,3 +284,8 @@ void GameManager::processPhysics( float dt, int velIters, int posIters )
 {
     m_world->Step( dt, velIters, posIters );
 }
+
+GameManager::SceneContentType operator|( GameManager::SceneContentType a, GameManager::SceneContentType b )
+{
+    return (GameManager::SceneContentType)( (int)a | (int)b );
+};

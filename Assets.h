@@ -7,6 +7,7 @@
 #include <XeCore/Common/Singleton.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <json/json.h>
 #include <map>
 
 class Assets
@@ -19,6 +20,32 @@ class Assets
 public:
     Assets();
     ~Assets();
+
+    void jsonToAssets( const Json::Value& root );
+    void jsonToTextures( const Json::Value& root );
+    void jsonToShaders( const Json::Value& root );
+    void jsonToSounds( const Json::Value& root );
+    void jsonToMusics( const Json::Value& root );
+    void jsonToFonts( const Json::Value& root );
+
+    sf::Texture* jsonToTexture( const Json::Value& root );
+    sf::Shader* jsonToShader( const Json::Value& root );
+    sf::Sound* jsonToSound( const Json::Value& root );
+    sf::Music* jsonToMusic( const Json::Value& root );
+    sf::Font* jsonToFont( const Json::Value& root );
+
+    Json::Value assetsToJson();
+    Json::Value texturesToJson();
+    Json::Value shadersToJson();
+    Json::Value soundsToJson();
+    Json::Value musicsToJson();
+    Json::Value fontsToJson();
+
+    Json::Value textureToJson( const std::string& id );
+    Json::Value shaderToJson( const std::string& id );
+    Json::Value soundToJson( const std::string& id );
+    Json::Value musicToJson( const std::string& id );
+    Json::Value fontToJson( const std::string& id );
 
     sf::Texture* addTexture( const std::string& id, const sf::Texture* ptr );
     sf::Shader* addShader( const std::string& id, const sf::Shader* ptr );
@@ -57,6 +84,11 @@ private:
     std::map< std::string, sf::SoundBuffer* > m_soundsBuffs;
     std::map< std::string, sf::Music* > m_musics;
     std::map< std::string, sf::Font* > m_fonts;
+    std::map< std::string, std::string > m_metaTextures;
+    std::map< std::string, std::string > m_metaShaders;
+    std::map< std::string, std::string > m_metaSounds;
+    std::map< std::string, std::string > m_metaMusics;
+    std::map< std::string, std::string > m_metaFonts;
 };
 
 #endif
