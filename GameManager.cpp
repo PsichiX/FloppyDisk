@@ -1,5 +1,7 @@
 #include "GameManager.h"
 #include "GameObject.h"
+#include "Transform.h"
+#include "SpriteRenderer.h"
 #include "Assets.h"
 #include <Box2D/Box2D.h>
 #include <fstream>
@@ -105,6 +107,8 @@ RTTI_CLASS_DERIVATIONS( GameManager,
                         RTTI_DERIVATIONS_END
                         );
 
+std::map< std::string, GameManager::ComponentFactoryData > GameManager::s_componentsFactory = std::map< std::string, GameManager::ComponentFactoryData >();
+
 GameManager::GameManager( float gravX, float gravY )
 : RTTI_CLASS_DEFINE( GameManager )
 , PhysicsWorld( this, &GameManager::getPhysicsWorld, 0 )
@@ -123,6 +127,123 @@ GameManager::~GameManager()
     DELETE_OBJECT( m_destructionListener );
     DELETE_OBJECT( m_contactListener );
     removeScene();
+}
+
+void GameManager::initialize()
+{
+    registerComponentFactory( "Transform", RTTI_CLASS_TYPE( Transform ), Transform::onBuildComponent );
+    registerComponentFactory( "SpriteRenderer", RTTI_CLASS_TYPE( SpriteRenderer ), SpriteRenderer::onBuildComponent );
+}
+
+void GameManager::cleanup()
+{
+    unregisterAllComponentFactories();
+}
+
+void GameManager::registerComponentFactory( const std::string& id, XeCore::Common::IRtti::Derivation type, Component::OnBuildComponentCallback builder )
+{
+    if( id.empty() || s_componentsFactory.count( id ) || type || !builder )
+        return;
+    ComponentFactoryData d;
+    d.type = type;
+    d.builder = builder;
+    s_componentsFactory[ id ] = d;
+}
+
+void GameManager::unregisterComponentFactory( const std::string& id )
+{
+    if( s_componentsFactory.count( id ) )
+        s_componentsFactory.erase( id );
+}
+
+void GameManager::unregisterComponentFactory( XeCore::Common::IRtti::Derivation type )
+{
+    for( std::map< std::string, ComponentFactoryData >::iterator it = s_componentsFactory.begin(); it != s_componentsFactory.end(); it++ )
+    {
+        if( it->second.type == type )
+        {
+            s_componentsFactory.erase( it );
+            return;
+        }
+    }
+}
+
+void GameManager::unregisterComponentFactory( Component::OnBuildComponentCallback builder )
+{
+    for( std::map< std::string, ComponentFactoryData >::iterator it = s_componentsFactory.begin(); it != s_componentsFactory.end(); it++ )
+    {
+        if( it->second.builder == builder )
+        {
+            s_componentsFactory.erase( it );
+            return;
+        }
+    }
+}
+
+void GameManager::unregisterAllComponentFactories()
+{
+    s_componentsFactory.clear();
+}
+
+XeCore::Common::IRtti::Derivation GameManager::findComponentFactoryTypeById( const std::string& id )
+{
+    if( s_componentsFactory.count( id ) )
+        return s_componentsFactory[ id ].type;
+    return 0;
+}
+
+XeCore::Common::IRtti::Derivation GameManager::findComponentFactoryTypeByBuilder( Component::OnBuildComponentCallback builder )
+{
+    for( std::map< std::string, ComponentFactoryData >::iterator it = s_componentsFactory.begin(); it != s_componentsFactory.end(); it++ )
+        if( it->second.builder == builder )
+            return it->second.type;
+    return 0;
+}
+
+std::string GameManager::findComponentFactoryIdByType( XeCore::Common::IRtti::Derivation type )
+{
+    for( std::map< std::string, ComponentFactoryData >::iterator it = s_componentsFactory.begin(); it != s_componentsFactory.end(); it++ )
+        if( it->second.type == type )
+            return it->first;
+    return std::string();
+}
+
+std::string GameManager::findComponentFactoryIdByBuilder( Component::OnBuildComponentCallback builder )
+{
+    for( std::map< std::string, ComponentFactoryData >::iterator it = s_componentsFactory.begin(); it != s_componentsFactory.end(); it++ )
+        if( it->second.builder == builder )
+            return it->first;
+    return std::string();
+}
+
+Component::OnBuildComponentCallback GameManager::findComponentFactoryBuilderById( const std::string& id )
+{
+    if( s_componentsFactory.count( id ) )
+        return s_componentsFactory[ id ].builder;
+    return 0;
+}
+
+Component::OnBuildComponentCallback GameManager::findComponentFactoryBuilderByType( XeCore::Common::IRtti::Derivation type )
+{
+    for( std::map< std::string, ComponentFactoryData >::iterator it = s_componentsFactory.begin(); it != s_componentsFactory.end(); it++ )
+        if( it->second.type == type )
+            return it->second.builder;
+    return 0;
+}
+
+Component* GameManager::buildComponent( const std::string& id )
+{
+    if( s_componentsFactory.count( id ) )
+        return s_componentsFactory[ id ].builder();
+    return 0;
+}
+
+Component* GameManager::buildComponent( XeCore::Common::IRtti::Derivation type )
+{
+    for( std::map< std::string, ComponentFactoryData >::iterator it = s_componentsFactory.begin(); it != s_componentsFactory.end(); it++ )
+        if( it->second.type == type )
+            return it->second.builder();
+    return 0;
 }
 
 Json::Value GameManager::loadJson( const std::string& path )
@@ -160,10 +281,26 @@ void GameManager::jsonToScene( const Json::Value& root, SceneContentType content
     if( contentFlags == GameManager::None || !root.isObject() )
         return;
     Json::Value assets = root[ "assets" ];
-    if( contentFlags & GameManager::Assets && assets.isObject() )
+    if( contentFlags & GameManager::Assets && !assets.isNull() )
         Assets::use().jsonToAssets( assets );
     Json::Value prefabs = root[ "prefabs" ];
+    if( contentFlags & GameManager::PrefabGameObjects && !prefabs.isNull() )
+        jsonToGameObjects( prefabs, true );
     Json::Value scene = root[ "scene" ];
+    if( contentFlags & GameManager::GameObjects && !scene.isNull() )
+        jsonToGameObjects( scene, false );
+}
+
+void GameManager::jsonToGameObjects( const Json::Value& root, bool prefab )
+{
+    if( !root.isArray() )
+        return;
+    for( unsigned int i = 0; i < root.size(); i++ )
+    {
+        GameObject* go = xnew GameObject();
+        go->fromJson( root );
+        addGameObject( go, prefab );
+    }
 }
 
 Json::Value GameManager::sceneToJson( SceneContentType contentFlags )
@@ -175,6 +312,34 @@ Json::Value GameManager::sceneToJson( SceneContentType contentFlags )
         if( !assets.isNull() )
             root[ "assets" ] = assets;
     }
+    if( contentFlags & GameManager::PrefabGameObjects )
+    {
+        Json::Value prefabs = gameObjectsToJson( true );
+        if( !prefabs.isNull() )
+            root[ "prefabs" ] = prefabs;
+    }
+    if( contentFlags & GameManager::GameObjects )
+    {
+        Json::Value scene = gameObjectsToJson( false );
+        if( !scene.isNull() )
+            root[ "scene" ] = scene;
+    }
+    return root;
+}
+
+Json::Value GameManager::gameObjectsToJson( bool prefab )
+{
+    Json::Value root;
+    GameObject* go;
+    Json::Value item;
+    std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
+    for( std::list< GameObject* >::iterator it = cgo.begin(); it != cgo.end(); it++ )
+    {
+        go = *it;
+        item = go->toJson();
+        if( !item.isNull() )
+            root.append( item );
+    }
     return root;
 }
 
@@ -183,7 +348,7 @@ void GameManager::removeScene( SceneContentType contentFlags )
     if( contentFlags & GameManager::Assets )
         Assets::use().freeAll();
     if( contentFlags & GameManager::PrefabGameObjects )
-        removeAllGameObjects();
+        removeAllGameObjects( false );
     if( contentFlags & GameManager::GameObjects )
         removeAllGameObjects( true );
 }

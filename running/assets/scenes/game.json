@@ -19,22 +19,25 @@
 	},
 	"prefabs": [
 		{
-			"Id": "floppy",
+			"properties": {
+				"Id": "floppy",
+			},
 			"components": [
 				{
-					"component": "Transform",
-					"Position": { 512, 288 }
+					"type": "Transform",
+					"properties": {
+						"Position": { 512, 288 }
+					}
 				},
 				{
-					"component": "SpriteRenderer",
-					"Texture": "floppy"
+					"type": "SpriteRenderer",
+					"properties": {
+						"Texture": "floppy"
+					}
 				}
 			]
 		}
 	],
 	"scene": [
-		{
-			"prefab": "floppy"
-		}
 	]
 }

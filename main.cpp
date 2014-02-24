@@ -22,7 +22,9 @@ void onEvent( Events::Event* ev )
 
 int main()
 {
+    /// initialization
     Events::use().setCallback( &onEvent );
+    GameManager::initialize();
 
     /// scene
     sf::RenderWindow* window = xnew sf::RenderWindow(
@@ -39,6 +41,7 @@ int main()
     /// game manager
     GameManager* gameManager = xnew GameManager( 10.0f, 0.0f );
     gameManager->jsonToScene( gameManager->loadJson( "assets/scenes/game.json" ) );
+    gameManager->saveJson( "assets/scenes/_game.json", gameManager->sceneToJson() );
 
     /// main loop
     srand( time( 0 ) );

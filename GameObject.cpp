@@ -1,7 +1,9 @@
 #include "GameObject.h"
+#include "GameManager.h"
 #include "Component.h"
 
 RTTI_CLASS_DERIVATIONS( GameObject,
+                        RTTI_DERIVATION( Serialized ),
                         RTTI_DERIVATIONS_END
                         )
 
@@ -14,11 +16,67 @@ GameObject::GameObject( const std::string& id )
 , m_active( true )
 , m_gameManager( 0 )
 {
+    serializableProperty( "Id" );
+    serializableProperty( "Active" );
 }
 
 GameObject::~GameObject()
 {
     removeAllComponents();
+}
+
+void GameObject::fromJson( const Json::Value& root )
+{
+    if( !root.isObject() )
+        return;
+    Json::Value properties = root[ "properties" ];
+    if( !properties.isNull() )
+        deserialize( properties );
+    Json::Value components = root[ "components" ];
+    if( components.isArray() )
+    {
+        Json::Value item;
+        Json::Value itemType;
+        Json::Value itemProps;
+        Component* comp;
+        for( unsigned int i = 0; i < components.size(); i++ )
+        {
+            item = components[ i ];
+            if( item.isObject() )
+            {
+                itemType = item[ "type" ];
+                if( itemType.isString() )
+                {
+                    std::string typeId = itemType.asString();
+                    comp = getComponent( GameManager::findComponentFactoryTypeById( typeId ) );
+                    if( !comp )
+                        comp = GameManager::buildComponent( typeId );
+                    if( comp )
+                    {
+                        comp->fromJson( item[ "properties" ] );
+                        addComponent( comp );
+                    }
+                }
+            }
+        }
+    }
+}
+
+Json::Value GameObject::toJson()
+{
+    Json::Value root;
+    serialize( root[ "properties" ] );
+    Json::Value components;
+    Json::Value comp;
+    for( std::map< XeCore::Common::IRtti::Derivation, Component* >::iterator it = m_components.begin(); it != m_components.end(); it++ )
+    {
+        comp = it->second->toJson();
+        if( !comp.isNull() )
+            components.append( comp );
+    }
+    if( !components.isNull() )
+        root[ "components" ] = components;
+    return root;
 }
 
 void GameObject::addComponent( Component* c )
@@ -106,6 +164,23 @@ void GameObject::onCollide( GameObject* other )
         if( c->getTypeFlags() & Component::Physics )
             c->onCollide( other );
     }
+}
+
+Json::Value GameObject::onSerialize( const std::string& property )
+{
+    if( property == "Id" )
+        return Json::Value( m_id );
+    else if( property == "Active" )
+        return Json::Value( m_active );
+    return Json::Value::null;
+}
+
+void GameObject::onDeserialize( const std::string& property, const Json::Value& root )
+{
+    if( property == "Id" && root.isString() )
+        m_id = root.asString();
+    else if( property == "Active" && root.isBool() )
+        m_active = root.asBool();
 }
 
 void GameObject::setGameManager( GameManager* gm )

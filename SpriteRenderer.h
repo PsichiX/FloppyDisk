@@ -15,6 +15,8 @@ public:
     SpriteRenderer();
     virtual ~SpriteRenderer();
 
+    FORCEINLINE static Component* onBuildComponent() { return xnew SpriteRenderer(); }
+
     FORCEINLINE sf::RectangleShape* getShape() { return m_shape; };
     FORCEINLINE sf::RenderStates& getRenderStates() { return m_renderStates; };
 

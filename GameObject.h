@@ -4,8 +4,10 @@
 #include <XeCore/Common/Property.h>
 #include <XeCore/Common/IRtti.h>
 #include <XeCore/Common/MemoryManager.h>
+#include <json/json.h>
 #include <map>
 #include <string>
+#include "Serialized.h"
 
 class Component;
 class GameManager;
@@ -17,12 +19,13 @@ namespace sf
 class GameObject
 : public virtual XeCore::Common::IRtti
 , public virtual XeCore::Common::MemoryManager::Manageable
+, public virtual Serialized
 {
     RTTI_CLASS_DECLARE( GameObject );
     friend class GameManager;
 
 public:
-    GameObject( const std::string& id );
+    GameObject( const std::string& id = "" );
     virtual ~GameObject();
 
     FORCEINLINE std::string getId() { return m_id; };
@@ -30,6 +33,10 @@ public:
     FORCEINLINE bool isActive() { return m_active; };
     FORCEINLINE void setActive( bool mode = true ) { m_active = mode; };
     FORCEINLINE GameManager* getGameManager() { return m_gameManager; };
+
+    void fromJson( const Json::Value& root );
+    Json::Value toJson();
+
     void addComponent( Component* c );
     void removeComponent( Component* c );
     void removeComponent( XeCore::Common::IRtti::Derivation d );
@@ -46,6 +53,9 @@ protected:
     void onUpdate( float dt );
     void onRender( sf::RenderTarget* target );
     void onCollide( GameObject* other );
+
+    virtual Json::Value onSerialize( const std::string& property );
+    virtual void onDeserialize( const std::string& property, const Json::Value& root );
 
 private:
     void setGameManager( GameManager* gm );

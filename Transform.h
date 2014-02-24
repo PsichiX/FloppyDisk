@@ -15,6 +15,8 @@ public:
     Transform();
     virtual ~Transform();
 
+    FORCEINLINE static Component* onBuildComponent() { return xnew Transform(); }
+
     FORCEINLINE sf::Vector2f getPosition() { return m_position; };
     FORCEINLINE void setPosition( sf::Vector2f pos ) { m_position = pos; };
     FORCEINLINE float getRotation() { return m_rotation; };
@@ -25,6 +27,10 @@ public:
     XeCore::Common::Property< sf::Vector2f, Transform > Position;
     XeCore::Common::Property< float, Transform > Rotation;
     XeCore::Common::Property< sf::Vector2f, Transform > Scale;
+
+protected:
+    virtual Json::Value onSerialize( const std::string& property );
+    virtual void onDeserialize( const std::string& property, const Json::Value& root );
 
 private:
     sf::Vector2f m_position;

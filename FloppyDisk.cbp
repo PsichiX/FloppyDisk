@@ -65,6 +65,9 @@
 		<Unit filename="GameManager.h" />
 		<Unit filename="GameObject.cpp" />
 		<Unit filename="GameObject.h" />
+		<Unit filename="Serialized.cpp" />
+		<Unit filename="Serialized.h" />
+		<Unit filename="Serialized.inl" />
 		<Unit filename="SpriteRenderer.cpp" />
 		<Unit filename="SpriteRenderer.h" />
 		<Unit filename="Transform.cpp" />

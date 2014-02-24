@@ -616,16 +616,18 @@
 1315167063 d:\sdks\box2d_v2.2.1\box2d\dynamics\joints\b2weldjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1393017085 source:d:\git\floppydisk\component.cpp
+1393199171 source:d:\git\floppydisk\component.cpp
 	"Component.h"
 	"GameObject.h"
+	"GameManager.h"
 
-1392873275 d:\git\floppydisk\component.h
+1393197244 d:\git\floppydisk\component.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<SFML/Graphics/RenderTarget.hpp>
 	<string>
+	"Serialized.h"
 
 1381771642 d:\git\xenoncore3\xenoncore3\include\xecore\common\string.h
 	<string>
@@ -636,7 +638,7 @@
 1381165376 d:\git\xenoncore3\xenoncore3\include\xecore\common\string.inl
 	<sstream>
 
-1393016435 source:d:\git\floppydisk\main.cpp
+1393199728 source:d:\git\floppydisk\main.cpp
 	<iostream>
 	<list>
 	<sstream>
@@ -669,31 +671,37 @@
 	<XeCore/Common/MemoryManager.h>
 	<map>
 
-1392873285 d:\git\floppydisk\gameobject.h
+1393196507 d:\git\floppydisk\gameobject.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
+	<json/json.h>
 	<map>
 	<string>
+	"Serialized.h"
 
-1393016259 source:d:\git\floppydisk\gamemanager.cpp
+1393199672 source:d:\git\floppydisk\gamemanager.cpp
 	"GameManager.h"
 	"GameObject.h"
+	"Transform.h"
+	"SpriteRenderer.h"
 	"Assets.h"
 	<Box2D/Box2D.h>
 	<fstream>
 	<list>
 
-1393011289 d:\git\floppydisk\gamemanager.h
+1393199467 d:\git\floppydisk\gamemanager.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<json/json.h>
 	<list>
 	<string>
+	"Component.h"
 
-1392843647 source:d:\git\floppydisk\gameobject.cpp
+1393199886 source:d:\git\floppydisk\gameobject.cpp
 	"GameObject.h"
+	"GameManager.h"
 	"Component.h"
 
 1392760374 d:\git\xenoncore3\xenoncore3\include\xecore\common\concurrent\thread.h
@@ -721,15 +729,15 @@
 	"Transform.h"
 	"GameObject.h"
 
-1392941579 d:\git\floppydisk\spriterenderer.h
+1393196334 d:\git\floppydisk\spriterenderer.h
 	"Component.h"
 	<SFML/Graphics.hpp>
 
-1392941392 d:\git\floppydisk\transform.h
+1393040900 d:\git\floppydisk\transform.h
 	"Component.h"
 	<SFML/System/Vector2.hpp>
 
-1392941435 source:d:\git\floppydisk\transform.cpp
+1393198807 source:d:\git\floppydisk\transform.cpp
 	"Transform.h"
 
 1392843418 d:\git\floppydisk\property.h
@@ -782,4 +790,17 @@
 	<vector>
 	<string>
 	<iostream>
+
+1393040532 d:\git\floppydisk\serialized.h
+	<XeCore/Common/IRtti.h>
+	<XeCore/Common/MemoryManager.h>
+	<json/json.h>
+	<vector>
+	<string>
+	"Serialized.inl"
+
+1393035102 d:\git\floppydisk\serialized.inl
+
+1393197436 source:d:\git\floppydisk\serialized.cpp
+	"Serialized.h"
 

@@ -15,8 +15,52 @@ Transform::Transform()
 , m_rotation( 0.0f )
 , m_scale( sf::Vector2f( 1.0f, 1.0f ) )
 {
+    serializableProperty( "Position" );
+    serializableProperty( "Rotation" );
+    serializableProperty( "Scale" );
 }
 
 Transform::~Transform()
 {
+}
+
+Json::Value Transform::onSerialize( const std::string& property )
+{
+    if( property == "Position" )
+    {
+        Json::Value v;
+        v.append( m_position.x );
+        v.append( m_position.y );
+        return v;
+    }
+    else if( property == "Rotation" )
+        return Json::Value( Rotation );
+    else if( property == "Scale" )
+    {
+        Json::Value v;
+        v.append( m_scale.x );
+        v.append( m_scale.y );
+        return v;
+    }
+    return Json::Value::null;
+}
+
+void Transform::onDeserialize( const std::string& property, const Json::Value& root )
+{
+    if( property == "Position" && root.isArray() && root.size() >= 2 )
+    {
+        m_position = sf::Vector2f(
+            (float)root[ 0u ].asDouble(),
+            (float)root[ 1u ].asDouble()
+        );
+    }
+    else if( property == "Rotation" && root.isNumeric() )
+        m_rotation = (float)root.asDouble();
+    else if( property == "Scale" && root.isArray() && root.size() >= 2 )
+    {
+        m_scale = sf::Vector2f(
+            (float)root[ 0u ].asDouble(),
+            (float)root[ 1u ].asDouble()
+        );
+    }
 }
