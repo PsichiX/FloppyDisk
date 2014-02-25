@@ -34,11 +34,10 @@ int main()
         sf::Style::Titlebar | sf::Style::Close
     );
     sf::View* camera = xnew sf::View(
-        //sf::Vector2f( (float)window->getSize().x * 0.5f, (float)window->getSize().y * 0.5f ),
-        sf::Vector2f( 0.0f, 0.0f ),
+        sf::Vector2f( (float)window->getSize().x * 0.5f, (float)window->getSize().y * 0.5f ),
         sf::Vector2f( (float)window->getSize().x, (float)window->getSize().y )
     );
-    //camera->zoom( 0.5f );
+    camera->zoom( 0.5f );
 
     /// game manager
     GameManager* gameManager = xnew GameManager( 10.0f, 0.0f );

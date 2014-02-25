@@ -32,6 +32,8 @@ protected:
     virtual Json::Value onSerialize( const std::string& property );
     virtual void onDeserialize( const std::string& property, const Json::Value& root );
 
+    virtual void onDuplicate( Component* dst );
+
 private:
     sf::Vector2f m_position;
     float m_rotation;

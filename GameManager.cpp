@@ -303,7 +303,12 @@ void GameManager::jsonToGameObjects( const Json::Value& root, bool prefab )
         itemPrefab = item[ "prefab" ];
         if( !itemPrefab.isNull() )
         {
-            /// TODO: add code: instantiate prefab
+            GameObject* go = instantiatePrefab( itemPrefab.asString() );
+            if( go )
+            {
+                go->fromJson( item );
+                addGameObject( go, prefab );
+            }
         }
         else
         {
@@ -432,6 +437,16 @@ GameObject* GameManager::getGameObject( const std::string& id, bool prefab )
         if( (*it)->getId() == id )
             return *it;
     return 0;
+}
+
+GameObject* GameManager::instantiatePrefab( const std::string& id )
+{
+    GameObject* p = getGameObject( id, true );
+    if( !p )
+        return 0;
+    GameObject* go = xnew GameObject();
+    p->onDuplicate( go );
+    return go;
 }
 
 void GameManager::processUpdate( float dt )

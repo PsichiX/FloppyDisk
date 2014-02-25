@@ -14,12 +14,14 @@ SpriteRenderer::SpriteRenderer()
 , Texture( this, &SpriteRenderer::getTexture, &SpriteRenderer::setTexture )
 , Size( this, &SpriteRenderer::getSize, &SpriteRenderer::setSize )
 , Origin( this, &SpriteRenderer::getOrigin, &SpriteRenderer::setOrigin )
-, RenderStates( this, &SpriteRenderer::getRenderStates, 0 )
+, OriginPercent( this, &SpriteRenderer::getOriginPercent, &SpriteRenderer::setOriginPercent )
+, RenderStates( this, &SpriteRenderer::getRenderStates, &SpriteRenderer::setRenderStates )
 , m_renderStates( sf::RenderStates::Default )
 {
     serializableProperty( "RenderStates" );
     serializableProperty( "Texture" );
     serializableProperty( "Size" );
+    serializableProperty( "OriginPercent" );
     serializableProperty( "Origin" );
     m_shape = xnew sf::RectangleShape();
 }
@@ -39,22 +41,47 @@ void SpriteRenderer::setSize( sf::Vector2f size )
     m_shape->setSize( size );
 }
 
+sf::Vector2f SpriteRenderer::getOriginPercent()
+{
+    sf::Vector2f o = getOrigin();
+    sf::Vector2f s = getSize();
+    o.x = s.x > 0.0f ? o.x / s.x : 0.0f;
+    o.y = s.y > 0.0f ? o.y / s.y : 0.0f;
+    return o;
+}
+
+void SpriteRenderer::setOriginPercent( sf::Vector2f origin )
+{
+    sf::Vector2f s = getSize();
+    setOrigin( sf::Vector2f( s.x * origin.x, s.y * origin.y ) );
+}
+
 Json::Value SpriteRenderer::onSerialize( const std::string& property )
 {
     if( property == "Texture" )
         return Json::Value( Assets::use().findTexture( getTexture() ) );
     else if( property == "Size" )
     {
+        sf::Vector2f s = getSize();
         Json::Value v;
-        v.append( Json::Value( getSize().x ) );
-        v.append( Json::Value( getSize().y ) );
+        v.append( Json::Value( s.x ) );
+        v.append( Json::Value( s.y ) );
         return v;
     }
     else if( property == "Origin" )
     {
+        sf::Vector2f o = getOrigin();
         Json::Value v;
-        v.append( Json::Value( getOrigin().x ) );
-        v.append( Json::Value( getOrigin().y ) );
+        v.append( Json::Value( o.x ) );
+        v.append( Json::Value( o.y ) );
+        return v;
+    }
+    else if( property == "OriginPercent" )
+    {
+        sf::Vector2f o = getOriginPercent();
+        Json::Value v;
+        v.append( Json::Value( o.x ) );
+        v.append( Json::Value( o.y ) );
         return v;
     }
     else if( property == "RenderStates" )
@@ -86,6 +113,13 @@ void SpriteRenderer::onDeserialize( const std::string& property, const Json::Val
             (float)root[ 1u ].asDouble()
         ) );
     }
+    else if( property == "OriginPercent" && root.isArray() && root.size() >= 2 )
+    {
+        setOriginPercent( sf::Vector2f(
+            (float)root[ 0u ].asDouble(),
+            (float)root[ 1u ].asDouble()
+        ) );
+    }
     else if( property == "RenderStates" && root.isObject() )
     {
         Json::Value blendMode = root[ "blendMode" ];
@@ -97,6 +131,16 @@ void SpriteRenderer::onDeserialize( const std::string& property, const Json::Val
     }
     else
         Component::onDeserialize( property, root );
+}
+
+void SpriteRenderer::onDuplicate( Component* dst )
+{
+    Component::onDuplicate( dst );
+    SpriteRenderer* c = XeCore::Common::IRtti::derivationCast< Component, SpriteRenderer >( dst );
+    c->setTexture( getTexture() );
+    c->setSize( getSize() );
+    c->setOrigin( getOrigin() );
+    c->setRenderStates( getRenderStates() );
 }
 
 void SpriteRenderer::onUpdate( float dt )

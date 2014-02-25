@@ -47,12 +47,6 @@ Json::Value Component::toJson()
     return root;
 }
 
-void Component::onUpdate( float dt ) {}
-
-void Component::onRender( sf::RenderTarget* target ) {}
-
-void Component::onCollide( GameObject* other ) {}
-
 Json::Value Component::onSerialize( const std::string& property )
 {
     if( property == "Active" )
@@ -65,6 +59,19 @@ void Component::onDeserialize( const std::string& property, const Json::Value& r
     if( property == "Active" && root.isBool() )
         m_active = root.asBool();
 }
+
+void Component::onDuplicate( Component* dst )
+{
+    if( !dst )
+        return;
+    dst->setActive( m_active );
+}
+
+void Component::onUpdate( float dt ) {}
+
+void Component::onRender( sf::RenderTarget* target ) {}
+
+void Component::onCollide( GameObject* other ) {}
 
 void Component::setGameObject( GameObject* gameObject )
 {

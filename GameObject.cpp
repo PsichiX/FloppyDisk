@@ -53,10 +53,11 @@ void GameObject::fromJson( const Json::Value& root )
                     if( !type )
                         XWARNING( "Component factory for type '", typeId.c_str(), "' not found!" );
                     comp = getComponent( type );
-                    if( !comp )
-                        comp = GameManager::buildComponent( typeId );
                     if( comp )
+                        comp->fromJson( item );
+                    else
                     {
+                        comp = GameManager::buildComponent( typeId );
                         comp->fromJson( item );
                         addComponent( comp );
                     }
@@ -137,6 +138,46 @@ Component* GameObject::getComponent( XeCore::Common::IRtti::Derivation d )
     return m_components.count( d ) ? m_components[ d ] : 0;
 }
 
+Json::Value GameObject::onSerialize( const std::string& property )
+{
+    if( property == "Id" )
+        return Json::Value( m_id );
+    else if( property == "Active" )
+        return Json::Value( m_active );
+    return Json::Value::null;
+}
+
+void GameObject::onDeserialize( const std::string& property, const Json::Value& root )
+{
+    if( property == "Id" && root.isString() )
+        m_id = root.asString();
+    else if( property == "Active" && root.isBool() )
+        m_active = root.asBool();
+}
+
+void GameObject::onDuplicate( GameObject* dst )
+{
+    if( !dst )
+        return;
+    dst->setId( m_id );
+    dst->setActive( m_active );
+    XeCore::Common::IRtti::Derivation type;
+    Component* comp;
+    for( std::map< XeCore::Common::IRtti::Derivation, Component* >::iterator it = m_components.begin(); it != m_components.end(); it++ )
+    {
+        type = it->first;
+        comp = dst->getComponent( type );
+        if( comp )
+            it->second->onDuplicate( comp );
+        else
+        {
+            comp = GameManager::buildComponent( type );
+            it->second->onDuplicate( comp );
+            dst->addComponent( comp );
+        }
+    }
+}
+
 void GameObject::onUpdate( float dt )
 {
     Component* c;
@@ -168,23 +209,6 @@ void GameObject::onCollide( GameObject* other )
         if( c->getTypeFlags() & Component::Physics )
             c->onCollide( other );
     }
-}
-
-Json::Value GameObject::onSerialize( const std::string& property )
-{
-    if( property == "Id" )
-        return Json::Value( m_id );
-    else if( property == "Active" )
-        return Json::Value( m_active );
-    return Json::Value::null;
-}
-
-void GameObject::onDeserialize( const std::string& property, const Json::Value& root )
-{
-    if( property == "Id" && root.isString() )
-        m_id = root.asString();
-    else if( property == "Active" && root.isBool() )
-        m_active = root.asBool();
 }
 
 void GameObject::setGameManager( GameManager* gm )

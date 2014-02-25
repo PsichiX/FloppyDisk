@@ -67,3 +67,12 @@ void Transform::onDeserialize( const std::string& property, const Json::Value& r
     else
         Component::onDeserialize( property, root );
 }
+
+void Transform::onDuplicate( Component* dst )
+{
+    Component::onDuplicate( dst );
+    Transform* c = XeCore::Common::IRtti::derivationCast< Component, Transform >( dst );
+    c->setPosition( getPosition() );
+    c->setRotation( getRotation() );
+    c->setScale( getScale() );
+}

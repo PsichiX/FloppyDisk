@@ -73,6 +73,7 @@ public:
     bool hasGameObject( GameObject* go, bool prefab = false );
     bool hasGameObject( const std::string& id, bool prefab = false );
     GameObject* getGameObject( const std::string& id, bool prefab = false );
+    GameObject* instantiatePrefab( const std::string& id );
 
     void processUpdate( float dt );
     void processRender( sf::RenderTarget* target );

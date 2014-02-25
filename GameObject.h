@@ -50,12 +50,13 @@ public:
     XeCore::Common::Property< GameManager*, GameObject > Owner;
 
 protected:
+    virtual Json::Value onSerialize( const std::string& property );
+    virtual void onDeserialize( const std::string& property, const Json::Value& root );
+
+    void onDuplicate( GameObject* dst );
     void onUpdate( float dt );
     void onRender( sf::RenderTarget* target );
     void onCollide( GameObject* other );
-
-    virtual Json::Value onSerialize( const std::string& property );
-    virtual void onDeserialize( const std::string& property, const Json::Value& root );
 
 private:
     void setGameManager( GameManager* gm );
