@@ -29,8 +29,8 @@ Json::Value Transform::onSerialize( const std::string& property )
     if( property == "Position" )
     {
         Json::Value v;
-        v.append( m_position.x );
-        v.append( m_position.y );
+        v.append( Json::Value( m_position.x ) );
+        v.append( Json::Value( m_position.y ) );
         return v;
     }
     else if( property == "Rotation" )
@@ -38,11 +38,12 @@ Json::Value Transform::onSerialize( const std::string& property )
     else if( property == "Scale" )
     {
         Json::Value v;
-        v.append( m_scale.x );
-        v.append( m_scale.y );
+        v.append( Json::Value( m_scale.x ) );
+        v.append( Json::Value( m_scale.y ) );
         return v;
     }
-    return Json::Value::null;
+    else
+        return Component::onSerialize( property );
 }
 
 void Transform::onDeserialize( const std::string& property, const Json::Value& root )
@@ -63,4 +64,6 @@ void Transform::onDeserialize( const std::string& property, const Json::Value& r
             (float)root[ 1u ].asDouble()
         );
     }
+    else
+        Component::onDeserialize( property, root );
 }

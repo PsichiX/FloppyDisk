@@ -142,7 +142,7 @@ void GameManager::cleanup()
 
 void GameManager::registerComponentFactory( const std::string& id, XeCore::Common::IRtti::Derivation type, Component::OnBuildComponentCallback builder )
 {
-    if( id.empty() || s_componentsFactory.count( id ) || type || !builder )
+    if( id.empty() || s_componentsFactory.count( id ) || !type || !builder )
         return;
     ComponentFactoryData d;
     d.type = type;
@@ -295,11 +295,22 @@ void GameManager::jsonToGameObjects( const Json::Value& root, bool prefab )
 {
     if( !root.isArray() )
         return;
+    Json::Value item;
+    Json::Value itemPrefab;
     for( unsigned int i = 0; i < root.size(); i++ )
     {
-        GameObject* go = xnew GameObject();
-        go->fromJson( root );
-        addGameObject( go, prefab );
+        item = root[ i ];
+        itemPrefab = item[ "prefab" ];
+        if( !itemPrefab.isNull() )
+        {
+            /// TODO: add code: instantiate prefab
+        }
+        else
+        {
+            GameObject* go = xnew GameObject();
+            go->fromJson( item );
+            addGameObject( go, prefab );
+        }
     }
 }
 

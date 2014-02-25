@@ -65,6 +65,12 @@ public:
     sf::Music* getMusic( const std::string& id );
     sf::Font* getFont( const std::string& id );
 
+    std::string findTexture( const sf::Texture* ptr );
+    std::string findShader( const sf::Shader* ptr );
+    std::string findSound( const sf::Sound* ptr );
+    std::string findMusic( const sf::Music* ptr );
+    std::string findFont( const sf::Font* ptr );
+
     void freeTexture( const std::string& id );
     void freeShader( const std::string& id );
     void freeSound( const std::string& id );

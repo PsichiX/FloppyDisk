@@ -437,6 +437,56 @@ sf::Font* Assets::getFont( const std::string& id )
     return m_fonts.count( id ) ? m_fonts[ id ] : 0;
 }
 
+std::string Assets::findTexture( const sf::Texture* ptr )
+{
+    if( !ptr )
+        return "";
+    for( std::map< std::string, sf::Texture* >::iterator it = m_textures.begin(); it != m_textures.end(); it++ )
+        if( it->second == ptr )
+            return it->first;
+    return "";
+}
+
+std::string Assets::findShader( const sf::Shader* ptr )
+{
+    if( !ptr )
+        return "";
+    for( std::map< std::string, sf::Shader* >::iterator it = m_shaders.begin(); it != m_shaders.end(); it++ )
+        if( it->second == ptr )
+            return it->first;
+    return "";
+}
+
+std::string Assets::findSound( const sf::Sound* ptr )
+{
+    if( !ptr )
+        return "";
+    for( std::map< std::string, sf::Sound* >::iterator it = m_sounds.begin(); it != m_sounds.end(); it++ )
+        if( it->second == ptr )
+            return it->first;
+    return "";
+}
+
+std::string Assets::findMusic( const sf::Music* ptr )
+{
+    if( !ptr )
+        return "";
+    for( std::map< std::string, sf::Music* >::iterator it = m_musics.begin(); it != m_musics.end(); it++ )
+        if( it->second == ptr )
+            return it->first;
+    return "";
+}
+
+std::string Assets::findFont( const sf::Font* ptr )
+{
+    if( !ptr )
+        return "";
+    for( std::map< std::string, sf::Font* >::iterator it = m_fonts.begin(); it != m_fonts.end(); it++ )
+        if( it->second == ptr )
+            return it->first;
+    return "";
+}
+
 void Assets::freeTexture( const std::string& id )
 {
     if( m_textures.count( id ) )

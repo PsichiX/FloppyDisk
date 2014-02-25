@@ -19,7 +19,7 @@ namespace sf
 class GameObject
 : public virtual XeCore::Common::IRtti
 , public virtual XeCore::Common::MemoryManager::Manageable
-, public virtual Serialized
+, public Serialized
 {
     RTTI_CLASS_DECLARE( GameObject );
     friend class GameManager;
