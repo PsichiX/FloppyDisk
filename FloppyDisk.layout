@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="Component.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1762" topLine="59" />
+		</Cursor>
+	</File>
+	<File name="Component.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1543" topLine="41" />
+		</Cursor>
+	</File>
+	<File name="Events.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="998" topLine="47" />
+		</Cursor>
+	</File>
+	<File name="Events.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="803" topLine="14" />
+		</Cursor>
+	</File>
+	<File name="GameManager.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14641" topLine="466" />
+		</Cursor>
+	</File>
+	<File name="GameManager.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2247" topLine="55" />
+		</Cursor>
+	</File>
 	<File name="GameObject.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1454" topLine="32" />
+			<Cursor1 position="5251" topLine="157" />
 		</Cursor>
 	</File>
 	<File name="GameObject.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1704" topLine="41" />
+			<Cursor1 position="1915" topLine="44" />
+		</Cursor>
+	</File>
+	<File name="Body.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="923" topLine="16" />
 		</Cursor>
 	</File>
 	<File name="Serialized.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -26,69 +61,44 @@
 			<Cursor1 position="64" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="SpriteRenderer.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="SpriteRenderer.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3634" topLine="95" />
+			<Cursor1 position="53" topLine="2" />
 		</Cursor>
 	</File>
-	<File name="SpriteRenderer.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="SpriteRenderer.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="839" topLine="11" />
+			<Cursor1 position="1639" topLine="18" />
 		</Cursor>
 	</File>
 	<File name="Transform.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1982" topLine="45" />
+			<Cursor1 position="716" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Transform.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="248" topLine="5" />
+			<Cursor1 position="125" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2334" topLine="67" />
+			<Cursor1 position="869" topLine="26" />
+		</Cursor>
+	</File>
+	<File name="Body.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1303" topLine="34" />
 		</Cursor>
 	</File>
 	<File name="Assets.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="11097" topLine="441" />
+			<Cursor1 position="652" topLine="21" />
 		</Cursor>
 	</File>
 	<File name="Assets.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3120" topLine="70" />
-		</Cursor>
-	</File>
-	<File name="Component.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="815" topLine="26" />
-		</Cursor>
-	</File>
-	<File name="Component.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="629" topLine="28" />
-		</Cursor>
-	</File>
-	<File name="Events.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="998" topLine="47" />
-		</Cursor>
-	</File>
-	<File name="Events.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="803" topLine="14" />
-		</Cursor>
-	</File>
-	<File name="GameManager.cpp" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="9460" topLine="292" />
-		</Cursor>
-	</File>
-	<File name="GameManager.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2528" topLine="53" />
+			<Cursor1 position="3964" topLine="76" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

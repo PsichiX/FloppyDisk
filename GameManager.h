@@ -68,9 +68,9 @@ public:
 
     void removeScene( SceneContentType contentFlags = All );
     void addGameObject( GameObject* go, bool prefab = false );
-    void removeGameObject( GameObject* go, bool prefab = false );
-    void removeGameObject( const std::string& id, bool prefab = false );
-    void removeAllGameObjects( bool prefab = false );
+    void removeGameObject( GameObject* go, bool prefab = false, bool del = true );
+    void removeGameObject( const std::string& id, bool prefab = false, bool del = true );
+    void removeAllGameObjects( bool prefab = false, bool del = true );
     bool hasGameObject( GameObject* go, bool prefab = false );
     bool hasGameObject( const std::string& id, bool prefab = false );
     GameObject* getGameObject( const std::string& id, bool prefab = false );

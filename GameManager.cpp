@@ -375,38 +375,49 @@ void GameManager::addGameObject( GameObject* go, bool prefab )
     std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
     cgo.push_back( go );
     go->setGameManager( this );
+    if( !prefab )
+        go->onCreate();
 }
 
-void GameManager::removeGameObject( GameObject* go, bool prefab )
+void GameManager::removeGameObject( GameObject* go, bool prefab, bool del )
 {
     if( !hasGameObject( go, prefab ) )
         return;
     std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
     cgo.remove( go );
+    if( !prefab )
+        go->onDestroy();
     go->setGameManager( 0 );
-    DELETE_OBJECT( go );
+    if( del )
+        DELETE_OBJECT( go );
 }
 
-void GameManager::removeGameObject( const std::string& id, bool prefab )
+void GameManager::removeGameObject( const std::string& id, bool prefab, bool del )
 {
     GameObject* go = getGameObject( id, prefab );
     if( !go )
         return;
     std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
     cgo.remove( go );
+    if( !prefab )
+        go->onDestroy();
     go->setGameManager( 0 );
-    DELETE_OBJECT( go );
+    if( del )
+        DELETE_OBJECT( go );
 }
 
-void GameManager::removeAllGameObjects( bool prefab )
+void GameManager::removeAllGameObjects( bool prefab, bool del )
 {
     GameObject* go;
     std::list< GameObject* >& cgo = prefab ? m_prefabGameObjects : m_gameObjects;
     for( std::list< GameObject* >::iterator it = cgo.begin(); it != cgo.end(); it++ )
     {
         go = *it;
+        if( !prefab )
+            go->onDestroy();
         go->setGameManager( 0 );
-        DELETE_OBJECT( *it );
+        if( del )
+            DELETE_OBJECT( *it );
     }
     cgo.clear();
 }

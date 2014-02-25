@@ -162,6 +162,18 @@ void GameObject::onDeserialize( const std::string& property, const Json::Value& 
         m_order = root.asInt();
 }
 
+void GameObject::onCreate()
+{
+    for( std::map< XeCore::Common::IRtti::Derivation, Component* >::iterator it = m_components.begin(); it != m_components.end(); it++ )
+        it->second->onCreate();
+}
+
+void GameObject::onDestroy()
+{
+    for( std::map< XeCore::Common::IRtti::Derivation, Component* >::iterator it = m_components.begin(); it != m_components.end(); it++ )
+        it->second->onDestroy();
+}
+
 void GameObject::onDuplicate( GameObject* dst )
 {
     if( !dst )

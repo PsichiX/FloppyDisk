@@ -60,6 +60,10 @@ void Component::onDeserialize( const std::string& property, const Json::Value& r
         m_active = root.asBool();
 }
 
+void Component::onCreate() {}
+
+void Component::onDestroy() {}
+
 void Component::onDuplicate( Component* dst )
 {
     if( !dst )

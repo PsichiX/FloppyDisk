@@ -56,6 +56,8 @@ protected:
     virtual Json::Value onSerialize( const std::string& property );
     virtual void onDeserialize( const std::string& property, const Json::Value& root );
 
+    void onCreate();
+    void onDestroy();
     void onDuplicate( GameObject* dst );
     void onUpdate( float dt );
     void onRender( sf::RenderTarget* target );
