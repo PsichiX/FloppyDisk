@@ -1,0 +1,88 @@
+{
+   "assets" : {
+      "fonts" : [
+         {
+            "id" : "font",
+            "path" : "assets/fonts/CONTF.ttf"
+         }
+      ],
+      "textures" : [
+         {
+            "id" : "floppy",
+            "path" : "assets/textures/floppy.png"
+         },
+         {
+            "id" : "magnet",
+            "path" : "assets/textures/magnet.png"
+         }
+      ]
+   },
+   "prefabs" : [
+      {
+         "components" : [
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Origin" : [ 16.0, 16.0 ],
+                  "OriginPercent" : [ 0.50, 0.50 ],
+                  "RenderStates" : {
+                     "blendMode" : 0,
+                     "shader" : ""
+                  },
+                  "Size" : [ 32.0, 32.0 ],
+                  "Texture" : "floppy"
+               },
+               "type" : "SpriteRenderer"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Position" : [ 0.0, 0.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
+            }
+         ],
+         "properties" : {
+            "Active" : true,
+            "Id" : "floppy",
+            "Order" : 0
+         }
+      }
+   ],
+   "scene" : [
+      {
+         "components" : [
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Origin" : [ 16.0, 16.0 ],
+                  "OriginPercent" : [ 0.50, 0.50 ],
+                  "RenderStates" : {
+                     "blendMode" : 0,
+                     "shader" : ""
+                  },
+                  "Size" : [ 32.0, 32.0 ],
+                  "Texture" : "floppy"
+               },
+               "type" : "SpriteRenderer"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Position" : [ 512.0, 288.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
+            }
+         ],
+         "properties" : {
+            "Active" : true,
+            "Id" : "floppy",
+            "Order" : 0
+         }
+      }
+   ]
+}

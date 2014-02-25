@@ -24,10 +24,7 @@
 			},
 			"components": [
 				{
-					"type": "Transform",
-					"properties": {
-						"Position": [ 512, 288 ]
-					}
+					"type": "Transform"
 				},
 				{
 					"type": "SpriteRenderer",
@@ -41,6 +38,16 @@
 		}
 	],
 	"scene": [
-		{ "prefab": "floppy" }
+		{
+			"prefab": "floppy",
+			"components": [
+				{
+					"type": "Transform",
+					"properties": {
+						"Position": [ 512, 288 ]
+					}
+				}
+			]
+		}
 	]
 }

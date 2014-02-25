@@ -671,7 +671,7 @@
 	<XeCore/Common/MemoryManager.h>
 	<map>
 
-1393356502 d:\git\floppydisk\gameobject.h
+1393364095 d:\git\floppydisk\gameobject.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
@@ -680,9 +680,8 @@
 	<string>
 	"Serialized.h"
 
-1393358195 source:d:\git\floppydisk\gamemanager.cpp
+1393364517 source:d:\git\floppydisk\gamemanager.cpp
 	"GameManager.h"
-	"GameObject.h"
 	"Transform.h"
 	"SpriteRenderer.h"
 	"Assets.h"
@@ -690,16 +689,17 @@
 	<fstream>
 	<list>
 
-1393358186 d:\git\floppydisk\gamemanager.h
+1393364764 d:\git\floppydisk\gamemanager.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<json/json.h>
 	<list>
 	<string>
+	"GameObject.h"
 	"Component.h"
 
-1393356944 source:d:\git\floppydisk\gameobject.cpp
+1393361139 source:d:\git\floppydisk\gameobject.cpp
 	"GameObject.h"
 	"GameManager.h"
 	"Component.h"

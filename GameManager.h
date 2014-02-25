@@ -7,6 +7,7 @@
 #include <json/json.h>
 #include <list>
 #include <string>
+#include "GameObject.h"
 #include "Component.h"
 
 class DestructionListener;
@@ -75,7 +76,7 @@ public:
     GameObject* getGameObject( const std::string& id, bool prefab = false );
     GameObject* instantiatePrefab( const std::string& id );
 
-    void processUpdate( float dt );
+    void processUpdate( float dt, bool sort = true );
     void processRender( sf::RenderTarget* target );
     void processPhysics( float dt, int velIters = DEFAULT_VEL_ITERS, int posIters = DEFAULT_POS_ITERS );
 
@@ -86,6 +87,11 @@ private:
     {
         XeCore::Common::IRtti::Derivation type;
         Component::OnBuildComponentCallback builder;
+    };
+
+    struct CompareGameObjects
+    {
+        FORCEINLINE bool operator() ( GameObject* a, GameObject* b ) { return a->getOrder() > b->getOrder(); };
     };
 
     static std::map< std::string, ComponentFactoryData > s_componentsFactory;

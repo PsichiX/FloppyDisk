@@ -32,6 +32,8 @@ public:
     FORCEINLINE void setId( std::string id ) { m_id = id; };
     FORCEINLINE bool isActive() { return m_active; };
     FORCEINLINE void setActive( bool mode = true ) { m_active = mode; };
+    FORCEINLINE int getOrder() { return m_order; };
+    FORCEINLINE void setOrder( int order ) { m_order = order; };
     FORCEINLINE GameManager* getGameManager() { return m_gameManager; };
 
     void fromJson( const Json::Value& root );
@@ -47,6 +49,7 @@ public:
 
     XeCore::Common::Property< std::string, GameObject > Id;
     XeCore::Common::Property< bool, GameObject > Active;
+    XeCore::Common::Property< int, GameObject > Order;
     XeCore::Common::Property< GameManager*, GameObject > Owner;
 
 protected:
@@ -63,6 +66,7 @@ private:
 
     std::string m_id;
     bool m_active;
+    int m_order;
     std::map< XeCore::Common::IRtti::Derivation, Component* > m_components;
     GameManager* m_gameManager;
 };

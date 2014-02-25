@@ -1,5 +1,4 @@
 #include "GameManager.h"
-#include "GameObject.h"
 #include "Transform.h"
 #include "SpriteRenderer.h"
 #include "Assets.h"
@@ -449,8 +448,10 @@ GameObject* GameManager::instantiatePrefab( const std::string& id )
     return go;
 }
 
-void GameManager::processUpdate( float dt )
+void GameManager::processUpdate( float dt, bool sort )
 {
+    if( sort )
+        m_gameObjects.sort( CompareGameObjects() );
     GameObject* go;
     for( std::list< GameObject* >::iterator it = m_gameObjects.begin(); it != m_gameObjects.end(); it++ )
     {

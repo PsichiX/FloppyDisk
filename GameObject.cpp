@@ -12,13 +12,16 @@ GameObject::GameObject( const std::string& id )
 : RTTI_CLASS_DEFINE( GameObject )
 , Id( this, &GameObject::getId, &GameObject::setId )
 , Active( this, &GameObject::isActive, &GameObject::setActive )
+, Order( this, &GameObject::getOrder, &GameObject::setOrder )
 , Owner( this, &GameObject::getGameManager, 0 )
 , m_id( id )
 , m_active( true )
+, m_order( 0 )
 , m_gameManager( 0 )
 {
     serializableProperty( "Id" );
     serializableProperty( "Active" );
+    serializableProperty( "Order" );
 }
 
 GameObject::~GameObject()
@@ -144,6 +147,8 @@ Json::Value GameObject::onSerialize( const std::string& property )
         return Json::Value( m_id );
     else if( property == "Active" )
         return Json::Value( m_active );
+    else if( property == "Order" )
+        return Json::Value( m_order );
     return Json::Value::null;
 }
 
@@ -153,6 +158,8 @@ void GameObject::onDeserialize( const std::string& property, const Json::Value& 
         m_id = root.asString();
     else if( property == "Active" && root.isBool() )
         m_active = root.asBool();
+    else if( property == "Order" && root.isInt() )
+        m_order = root.asInt();
 }
 
 void GameObject::onDuplicate( GameObject* dst )
@@ -161,6 +168,7 @@ void GameObject::onDuplicate( GameObject* dst )
         return;
     dst->setId( m_id );
     dst->setActive( m_active );
+    dst->setOrder( m_order );
     XeCore::Common::IRtti::Derivation type;
     Component* comp;
     for( std::map< XeCore::Common::IRtti::Derivation, Component* >::iterator it = m_components.begin(); it != m_components.end(); it++ )
