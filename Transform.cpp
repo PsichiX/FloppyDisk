@@ -1,4 +1,6 @@
 #include "Transform.h"
+#include "GameObject.h"
+#include "Body.h"
 
 RTTI_CLASS_DERIVATIONS( Transform,
                         RTTI_DERIVATION( Component ),
@@ -7,7 +9,7 @@ RTTI_CLASS_DERIVATIONS( Transform,
 
 Transform::Transform()
 : RTTI_CLASS_DEFINE( Transform )
-, Component( Component::None )
+, Component( Component::Update )
 , Position( this, &Transform::getPosition, &Transform::setPosition )
 , Rotation( this, &Transform::getRotation, &Transform::setRotation )
 , Scale( this, &Transform::getScale, &Transform::setScale )
@@ -75,4 +77,15 @@ void Transform::onDuplicate( Component* dst )
     c->setPosition( getPosition() );
     c->setRotation( getRotation() );
     c->setScale( getScale() );
+}
+
+void Transform::onUpdate( float dt )
+{
+    Body* body = (Body*)getGameObject()->getComponent( RTTI_CLASS_TYPE( Body ) );
+    if( body )
+    {
+        b2Vec2 pos = body->getPosition();
+        setPosition( sf::Vector2f( pos.x, pos.y ) );
+        setRotation( body->getAngle() );
+    }
 }

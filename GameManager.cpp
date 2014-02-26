@@ -1,6 +1,7 @@
 #include "GameManager.h"
 #include "Transform.h"
 #include "SpriteRenderer.h"
+#include "Body.h"
 #include "Assets.h"
 #include <Box2D/Box2D.h>
 #include <fstream>
@@ -132,6 +133,7 @@ void GameManager::initialize()
 {
     registerComponentFactory( "Transform", RTTI_CLASS_TYPE( Transform ), Transform::onBuildComponent );
     registerComponentFactory( "SpriteRenderer", RTTI_CLASS_TYPE( SpriteRenderer ), SpriteRenderer::onBuildComponent );
+    registerComponentFactory( "Body", RTTI_CLASS_TYPE( Body ), Body::onBuildComponent );
 }
 
 void GameManager::cleanup()

@@ -33,6 +33,7 @@ protected:
     virtual void onDeserialize( const std::string& property, const Json::Value& root );
 
     virtual void onDuplicate( Component* dst );
+    virtual void onUpdate( float dt );
 
 private:
     sf::Vector2f m_position;

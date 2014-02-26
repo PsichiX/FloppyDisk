@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1393283924 source:d:\git\floppydisk\assets.cpp
+1393365321 source:d:\git\floppydisk\assets.cpp
 	"Assets.h"
 	<XeCore/Common/String.h>
 
@@ -616,12 +616,12 @@
 1315167063 d:\sdks\box2d_v2.2.1\box2d\dynamics\joints\b2weldjoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1393356546 source:d:\git\floppydisk\component.cpp
+1393369074 source:d:\git\floppydisk\component.cpp
 	"Component.h"
 	"GameObject.h"
 	"GameManager.h"
 
-1393356483 d:\git\floppydisk\component.h
+1393368379 d:\git\floppydisk\component.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
@@ -671,7 +671,7 @@
 	<XeCore/Common/MemoryManager.h>
 	<map>
 
-1393364095 d:\git\floppydisk\gameobject.h
+1393368148 d:\git\floppydisk\gameobject.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
@@ -680,16 +680,17 @@
 	<string>
 	"Serialized.h"
 
-1393364517 source:d:\git\floppydisk\gamemanager.cpp
+1393451746 source:d:\git\floppydisk\gamemanager.cpp
 	"GameManager.h"
 	"Transform.h"
 	"SpriteRenderer.h"
+	"Body.h"
 	"Assets.h"
 	<Box2D/Box2D.h>
 	<fstream>
 	<list>
 
-1393364764 d:\git\floppydisk\gamemanager.h
+1393368294 d:\git\floppydisk\gamemanager.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
@@ -699,7 +700,7 @@
 	"GameObject.h"
 	"Component.h"
 
-1393361139 source:d:\git\floppydisk\gameobject.cpp
+1393368229 source:d:\git\floppydisk\gameobject.cpp
 	"GameObject.h"
 	"GameManager.h"
 	"Component.h"
@@ -735,7 +736,7 @@
 	"Component.h"
 	<SFML/Graphics.hpp>
 
-1393356593 d:\git\floppydisk\transform.h
+1393452030 d:\git\floppydisk\transform.h
 	"Component.h"
 	<SFML/System/Vector2.hpp>
 
@@ -793,7 +794,7 @@
 	<string>
 	<iostream>
 
-1393040532 d:\git\floppydisk\serialized.h
+1393443618 d:\git\floppydisk\serialized.h
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<json/json.h>
@@ -801,8 +802,17 @@
 	<string>
 	"Serialized.inl"
 
-1393035102 d:\git\floppydisk\serialized.inl
+1393445675 d:\git\floppydisk\serialized.inl
 
 1393197436 source:d:\git\floppydisk\serialized.cpp
 	"Serialized.h"
+
+1393452420 source:d:\git\floppydisk\body.cpp
+	"Body.h"
+	"GameObject.h"
+	"GameManager.h"
+
+1393452349 d:\git\floppydisk\body.h
+	"Component.h"
+	<Box2D/Box2D.h>
 

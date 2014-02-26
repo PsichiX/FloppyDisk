@@ -18,6 +18,7 @@ public:
     virtual ~Serialized();
 
     FORCEINLINE void serializableProperty( const std::string& name );
+    FORCEINLINE void notSerializableProperty( const std::string& name );
     void serialize( Json::Value& dstRoot );
     void deserialize( const Json::Value& srcRoot );
 
