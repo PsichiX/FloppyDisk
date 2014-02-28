@@ -61,6 +61,8 @@
 		<Unit filename="Body.h" />
 		<Unit filename="Component.cpp" />
 		<Unit filename="Component.h" />
+		<Unit filename="EnumSerializer.cpp" />
+		<Unit filename="EnumSerializer.h" />
 		<Unit filename="Events.cpp" />
 		<Unit filename="Events.h" />
 		<Unit filename="GameManager.cpp" />
@@ -74,6 +76,7 @@
 		<Unit filename="SpriteRenderer.h" />
 		<Unit filename="Transform.cpp" />
 		<Unit filename="Transform.h" />
+		<Unit filename="b2BodyTypeSerializer.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

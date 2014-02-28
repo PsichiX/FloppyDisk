@@ -638,7 +638,7 @@
 1381165376 d:\git\xenoncore3\xenoncore3\include\xecore\common\string.inl
 	<sstream>
 
-1393358495 source:d:\git\floppydisk\main.cpp
+1393630516 source:d:\git\floppydisk\main.cpp
 	<iostream>
 	<list>
 	<sstream>
@@ -680,31 +680,32 @@
 	<string>
 	"Serialized.h"
 
-1393451746 source:d:\git\floppydisk\gamemanager.cpp
+1393631012 source:d:\git\floppydisk\gamemanager.cpp
 	"GameManager.h"
 	"Transform.h"
 	"SpriteRenderer.h"
 	"Body.h"
 	"Assets.h"
-	<Box2D/Box2D.h>
+	"b2BodyTypeSerializer.h"
 	<fstream>
-	<list>
 
-1393368294 d:\git\floppydisk\gamemanager.h
+1393630960 d:\git\floppydisk\gamemanager.h
 	<XeCore/Common/Property.h>
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<json/json.h>
 	<list>
 	<string>
+	<Box2D/Box2D.h>
 	"GameObject.h"
 	"Component.h"
 
-1393368229 source:d:\git\floppydisk\gameobject.cpp
+1393624994 source:d:\git\floppydisk\gameobject.cpp
 	"GameObject.h"
 	"GameManager.h"
 	"Component.h"
 	<XeCore/Common/Logger.h>
+	<sstream>
 
 1392760374 d:\git\xenoncore3\xenoncore3\include\xecore\common\concurrent\thread.h
 	"TinyThreads/tinythread.h"
@@ -726,7 +727,7 @@
 1380902486 d:\git\xenoncore3\xenoncore3\include\xecore\common\concurrent\runnable.h
 	"../MemoryManager.h"
 
-1393359419 source:d:\git\floppydisk\spriterenderer.cpp
+1393626774 source:d:\git\floppydisk\spriterenderer.cpp
 	"SpriteRenderer.h"
 	"Transform.h"
 	"GameObject.h"
@@ -740,8 +741,10 @@
 	"Component.h"
 	<SFML/System/Vector2.hpp>
 
-1393356877 source:d:\git\floppydisk\transform.cpp
+1393626725 source:d:\git\floppydisk\transform.cpp
 	"Transform.h"
+	"GameObject.h"
+	"Body.h"
 
 1392843418 d:\git\floppydisk\property.h
 
@@ -794,7 +797,7 @@
 	<string>
 	<iostream>
 
-1393443618 d:\git\floppydisk\serialized.h
+1393623882 d:\git\floppydisk\serialized.h
 	<XeCore/Common/IRtti.h>
 	<XeCore/Common/MemoryManager.h>
 	<json/json.h>
@@ -804,15 +807,25 @@
 
 1393445675 d:\git\floppydisk\serialized.inl
 
-1393197436 source:d:\git\floppydisk\serialized.cpp
+1393623231 source:d:\git\floppydisk\serialized.cpp
 	"Serialized.h"
 
-1393452420 source:d:\git\floppydisk\body.cpp
+1393630159 source:d:\git\floppydisk\body.cpp
 	"Body.h"
 	"GameObject.h"
 	"GameManager.h"
 
-1393452349 d:\git\floppydisk\body.h
+1393629901 d:\git\floppydisk\body.h
 	"Component.h"
+	<Box2D/Box2D.h>
+
+1393623841 source:d:\git\floppydisk\enumserializer.cpp
+	"EnumSerializer.h"
+
+1393623583 d:\git\floppydisk\enumserializer.h
+	"Serialized.h"
+
+1393623653 d:\git\floppydisk\b2bodytypeserializer.h
+	"EnumSerializer.h"
 	<Box2D/Box2D.h>
 

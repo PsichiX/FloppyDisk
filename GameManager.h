@@ -7,17 +7,12 @@
 #include <json/json.h>
 #include <list>
 #include <string>
+#include <Box2D/Box2D.h>
 #include "GameObject.h"
 #include "Component.h"
 
 class DestructionListener;
 class ContactListener;
-class b2World;
-class GameObject;
-namespace sf
-{
-    class RenderTarget;
-}
 
 class GameManager
     : public virtual XeCore::Common::IRtti
@@ -38,7 +33,7 @@ public:
     static const int DEFAULT_VEL_ITERS = 6;
     static const int DEFAULT_POS_ITERS = 2;
 
-    GameManager( float gravX, float gravY );
+    GameManager( float gravX = 0.0f, float gravY = 0.0f );
     ~GameManager();
 
     static void initialize();
@@ -76,10 +71,13 @@ public:
     GameObject* getGameObject( const std::string& id, bool prefab = false );
     GameObject* instantiatePrefab( const std::string& id );
 
+    FORCEINLINE b2Vec2 getWorldGravity() { return m_world->GetGravity(); };
+    FORCEINLINE void setWorldGravity( b2Vec2 v ) { m_world->SetGravity( v ); };
     void processUpdate( float dt, bool sort = true );
     void processRender( sf::RenderTarget* target );
     void processPhysics( float dt, int velIters = DEFAULT_VEL_ITERS, int posIters = DEFAULT_POS_ITERS );
 
+    XeCore::Common::Property< b2Vec2, GameManager > PhysicsGravity;
     XeCore::Common::Property< b2World*, GameManager > PhysicsWorld;
 
 private:

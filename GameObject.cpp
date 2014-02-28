@@ -2,6 +2,7 @@
 #include "GameManager.h"
 #include "Component.h"
 #include <XeCore/Common/Logger.h>
+#include <sstream>
 
 RTTI_CLASS_DERIVATIONS( GameObject,
                         RTTI_DERIVATION( Serialized ),
@@ -54,15 +55,22 @@ void GameObject::fromJson( const Json::Value& root )
                     std::string typeId = itemType.asString();
                     XeCore::Common::IRtti::Derivation type = GameManager::findComponentFactoryTypeById( typeId );
                     if( !type )
-                        XWARNING( "Component factory for type '", typeId.c_str(), "' not found!" );
+                    {
+                        std::stringstream ss;
+                        ss << "Component factory for type '" << typeId.c_str() << "' not found!";
+                        XWARNING( ss.str().c_str() );
+                    }
                     comp = getComponent( type );
                     if( comp )
                         comp->fromJson( item );
                     else
                     {
                         comp = GameManager::buildComponent( typeId );
-                        comp->fromJson( item );
-                        addComponent( comp );
+                        if( comp )
+                        {
+                            comp->fromJson( item );
+                            addComponent( comp );
+                        }
                     }
                 }
             }

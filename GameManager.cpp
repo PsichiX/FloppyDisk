@@ -3,9 +3,8 @@
 #include "SpriteRenderer.h"
 #include "Body.h"
 #include "Assets.h"
-#include <Box2D/Box2D.h>
+#include "b2BodyTypeSerializer.h"
 #include <fstream>
-#include <list>
 
 class DestructionListener
     : public virtual XeCore::Common::IRtti
@@ -111,6 +110,7 @@ std::map< std::string, GameManager::ComponentFactoryData > GameManager::s_compon
 
 GameManager::GameManager( float gravX, float gravY )
 : RTTI_CLASS_DEFINE( GameManager )
+, PhysicsGravity( this, &GameManager::getWorldGravity, &GameManager::setWorldGravity )
 , PhysicsWorld( this, &GameManager::getPhysicsWorld, 0 )
 , m_world( 0 )
 , m_destructionListener( 0 )
@@ -123,14 +123,15 @@ GameManager::GameManager( float gravX, float gravY )
 
 GameManager::~GameManager()
 {
+    removeScene();
     DELETE_OBJECT( m_world );
     DELETE_OBJECT( m_destructionListener );
     DELETE_OBJECT( m_contactListener );
-    removeScene();
 }
 
 void GameManager::initialize()
 {
+    Serialized::registerCustomSerializer( "b2BodyType", xnew b2BodyTypeSerializer() );
     registerComponentFactory( "Transform", RTTI_CLASS_TYPE( Transform ), Transform::onBuildComponent );
     registerComponentFactory( "SpriteRenderer", RTTI_CLASS_TYPE( SpriteRenderer ), SpriteRenderer::onBuildComponent );
     registerComponentFactory( "Body", RTTI_CLASS_TYPE( Body ), Body::onBuildComponent );
@@ -138,6 +139,7 @@ void GameManager::initialize()
 
 void GameManager::cleanup()
 {
+    Serialized::unregisterAllCustomSerializers();
     unregisterAllComponentFactories();
 }
 
@@ -281,6 +283,13 @@ void GameManager::jsonToScene( const Json::Value& root, SceneContentType content
 {
     if( contentFlags == GameManager::None || !root.isObject() )
         return;
+    Json::Value physics = root[ "physics" ];
+    if( !physics.isNull() )
+    {
+        Json::Value gravity = physics[ "gravity" ];
+        if( gravity.isArray() && gravity.size() == 2 )
+            setWorldGravity( b2Vec2( (float)gravity[ 0u ].asDouble(), (float)gravity[ 1u ].asDouble() ) );
+    }
     Json::Value assets = root[ "assets" ];
     if( contentFlags & GameManager::Assets && !assets.isNull() )
         Assets::use().jsonToAssets( assets );
@@ -323,6 +332,13 @@ void GameManager::jsonToGameObjects( const Json::Value& root, bool prefab )
 Json::Value GameManager::sceneToJson( SceneContentType contentFlags )
 {
     Json::Value root;
+    Json::Value physics;
+    Json::Value physicsGravity;
+    b2Vec2 grav = getWorldGravity();
+    physicsGravity.append( Json::Value( grav.x ) );
+    physicsGravity.append( Json::Value( grav.y ) );
+    physics[ "gravity" ] = physicsGravity;
+    root[ "physics" ] = physics;
     if( contentFlags & GameManager::Assets )
     {
         Json::Value assets = Assets::use().assetsToJson();

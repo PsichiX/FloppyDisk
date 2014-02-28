@@ -34,13 +34,13 @@ int main()
         sf::Style::Titlebar | sf::Style::Close
     );
     sf::View* camera = xnew sf::View(
-        sf::Vector2f( (float)window->getSize().x * 0.5f, (float)window->getSize().y * 0.5f ),
+        sf::Vector2f(),
         sf::Vector2f( (float)window->getSize().x, (float)window->getSize().y )
     );
     camera->zoom( 0.5f );
 
     /// game manager
-    GameManager* gameManager = xnew GameManager( 10.0f, 0.0f );
+    GameManager* gameManager = xnew GameManager();
     gameManager->jsonToScene( gameManager->loadJson( "assets/scenes/game.json" ) );
     gameManager->saveJson( "assets/scenes/_game.json", gameManager->sceneToJson() );
 
@@ -69,7 +69,7 @@ int main()
 
         /// process frame
         Events::use().dispatch();
-        gameManager->processPhysics( dt * 1000.0f );
+        gameManager->processPhysics( dt );
         gameManager->processUpdate( dt );
         window->clear( WINDOW_COLOR );
         window->setView( *camera );

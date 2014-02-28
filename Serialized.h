@@ -14,8 +14,24 @@ class Serialized
     RTTI_CLASS_DECLARE( Serialized );
 
 public:
+    class ICustomSerializer
+    {
+    public:
+        ICustomSerializer() {}
+        virtual ~ICustomSerializer() {};
+
+        virtual Json::Value serialize( const void* srcValue ) = 0;
+        virtual void deserialize( const void* dstValue, const Json::Value& root ) = 0;
+    };
+
     Serialized();
     virtual ~Serialized();
+
+    static void registerCustomSerializer( const std::string& id, ICustomSerializer* serializer );
+    static void unregisterCustomSerializer( const std::string& id, bool del = true );
+    static void unregisterCustomSerializer( ICustomSerializer* serializer, bool del = true );
+    static void unregisterAllCustomSerializers( bool del = true );
+    static ICustomSerializer* getCustomSerializer( const std::string& id );
 
     FORCEINLINE void serializableProperty( const std::string& name );
     FORCEINLINE void notSerializableProperty( const std::string& name );
@@ -28,6 +44,8 @@ protected:
 
 private:
     std::vector< std::string > m_properties;
+
+    static std::map< std::string, ICustomSerializer* > s_customSerializers;
 };
 
 #include "Serialized.inl"

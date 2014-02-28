@@ -17,9 +17,34 @@
          }
       ]
    },
+   "physics" : {
+      "gravity" : [ 10.0, 0.0 ]
+   },
    "prefabs" : [
       {
          "components" : [
+            {
+               "properties" : {
+                  "Active" : true,
+                  "AngularDamping" : 0.0,
+                  "AngularVelocity" : 0.0,
+                  "BodyType" : "b2_dynamicBody",
+                  "Density" : 1.0,
+                  "GravityScale" : 1.0,
+                  "IsBullet" : false,
+                  "IsFixedRotation" : false,
+                  "IsSleepingAllowed" : true,
+                  "LinearDamping" : 0.0,
+                  "LinearVelocity" : [ 0.0, 0.0 ],
+                  "Vertices" : [
+                     [ -1.0, -1.0 ],
+                     [ 1.0, -1.0 ],
+                     [ 1.0, 1.0 ],
+                     [ -1.0, 1.0 ]
+                  ]
+               },
+               "type" : "Body"
+            },
             {
                "properties" : {
                   "Active" : true,
@@ -57,6 +82,28 @@
             {
                "properties" : {
                   "Active" : true,
+                  "AngularDamping" : 0.0,
+                  "AngularVelocity" : 0.0,
+                  "BodyType" : "b2_dynamicBody",
+                  "Density" : 1.0,
+                  "GravityScale" : 1.0,
+                  "IsBullet" : false,
+                  "IsFixedRotation" : false,
+                  "IsSleepingAllowed" : true,
+                  "LinearDamping" : 0.0,
+                  "LinearVelocity" : [ 0.0, 0.0 ],
+                  "Vertices" : [
+                     [ -1.0, -1.0 ],
+                     [ 1.0, -1.0 ],
+                     [ 1.0, 1.0 ],
+                     [ -1.0, 1.0 ]
+                  ]
+               },
+               "type" : "Body"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
                   "Origin" : [ 16.0, 16.0 ],
                   "OriginPercent" : [ 0.50, 0.50 ],
                   "RenderStates" : {
@@ -71,7 +118,7 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ 512.0, 288.0 ],
+                  "Position" : [ 0.0, 0.0 ],
                   "Rotation" : 0.0,
                   "Scale" : [ 1.0, 1.0 ]
                },

@@ -11,6 +11,7 @@ Body::Body()
 : RTTI_CLASS_DEFINE( Body )
 , Component( Component::Physics )
 , Vertices( this, &Body::getVertices, &Body::setVertices )
+, Density( this, &Body::getDensity, &Body::setDensity )
 , BodyType( this, &Body::getBodyType, &Body::setBodyType )
 , LinearVelocity( this, &Body::getLinearVelocity, &Body::setLinearVelocity )
 , AngularVelocity( this, &Body::getAngularVelocity, &Body::setAngularVelocity )
@@ -20,8 +21,13 @@ Body::Body()
 , IsFixedRotation( this, &Body::isFixedRotation, &Body::setFixedRotation )
 , IsBullet( this, &Body::isBullet, &Body::setBullet )
 , GravityScale( this, &Body::getGravityScale, &Body::setGravityScale )
+, m_density( 1.0f )
+, m_body( 0 )
+, m_fixture( 0 )
+, m_shape( 0 )
 {
     serializableProperty( "Vertices" );
+    serializableProperty( "Density" );
     serializableProperty( "BodyType" );
     serializableProperty( "LinearVelocity" );
     serializableProperty( "AngularVelocity" );
@@ -31,17 +37,11 @@ Body::Body()
     serializableProperty( "IsFixedRotation" );
     serializableProperty( "IsBullet" );
     serializableProperty( "GravityScale" );
-    m_shape = xnew b2PolygonShape();
-    m_fixtureDef.shape = m_shape;
-    m_fixtureDef.density = 1.0f;
-    m_fixtureDef.friction = 1.0f;
 }
 
 Body::~Body()
 {
     onDestroy();
-    DELETE_OBJECT( m_shape );
-    m_fixtureDef.shape = 0;
 }
 
 void Body::setVertices( VerticesData& verts )
@@ -53,6 +53,11 @@ void Body::setVertices( VerticesData& verts )
             m_verts.assign( verts.begin(), verts.end() );
     }
     applyVertices();
+}
+
+void Body::applyVertices()
+{
+    onCreate();
 }
 
 Json::Value Body::onSerialize( const std::string& property )
@@ -69,8 +74,18 @@ Json::Value Body::onSerialize( const std::string& property )
         }
         return v;
     }
+    else if( property == "Density" )
+        return Json::Value( m_density );
     else if( property == "BodyType" )
-        return Json::Value( (int)getBodyType() );
+    {
+        Serialized::ICustomSerializer* s = Serialized::getCustomSerializer( "b2BodyType" );
+        if( s )
+        {
+            b2BodyType bt = getBodyType();
+            return s->serialize( &bt );
+        }
+        return Json::Value::null;
+    }
     else if( property == "LinearVelocity" )
     {
         b2Vec2 p = getLinearVelocity();
@@ -117,8 +132,18 @@ void Body::onDeserialize( const std::string& property, const Json::Value& root )
         }
         setVertices( v );
     }
-    else if( property == "BodyType" && root.isInt() )
-        setBodyType( (b2BodyType)root.asInt() );
+    else if( property == "Density" && root.isNumeric() )
+        setDensity( (float)root.asDouble() );
+    else if( property == "BodyType" && root.isString() )
+    {
+        Serialized::ICustomSerializer* s = Serialized::getCustomSerializer( "b2BodyType" );
+        if( s )
+        {
+            b2BodyType bt = getBodyType();
+            s->deserialize( &bt, root );
+            setBodyType( bt );
+        }
+    }
     else if( property == "LinearVelocity" && root.isArray() && root.size() == 2 )
         setLinearVelocity( b2Vec2( (float)root[ 0u ].asDouble(), (float)root[ 1u ].asDouble() ) );
     else if( property == "AngularVelocity" && root.isNumeric() )
@@ -141,14 +166,23 @@ void Body::onDeserialize( const std::string& property, const Json::Value& root )
 
 void Body::onCreate()
 {
+    if( !getGameObject() )
+        return;
     onDestroy();
     m_body = getGameObject()->getGameManager()->getPhysicsWorld()->CreateBody( &m_bodyDef );
-    m_body->CreateFixture( &m_fixtureDef );
+    m_shape = xnew b2PolygonShape();
+    if( m_verts.size() )
+    {
+        m_shape->Set( m_verts.data(), m_verts.size() );
+        m_fixture = m_body->CreateFixture( m_shape, 1.0f );
+    }
     m_body->SetUserData( this );
 }
 
 void Body::onDestroy()
 {
+    if( !getGameObject() )
+        return;
     if( m_body )
     {
         m_bodyDef.type = m_body->GetType();
@@ -162,16 +196,28 @@ void Body::onDestroy()
         m_bodyDef.gravityScale = m_body->GetGravityScale();
         m_bodyDef.position = m_body->GetPosition();
         m_bodyDef.angle = m_body->GetAngle();
+        if( m_fixture )
+        {
+            m_density = m_fixture->GetDensity();
+            m_body->DestroyFixture( m_fixture );
+        }
         getGameObject()->getGameManager()->getPhysicsWorld()->DestroyBody( m_body );
     }
     m_body = 0;
+    m_fixture = 0;
+    DELETE_OBJECT( m_shape );
 }
 
 void Body::onDuplicate( Component* dst )
 {
+    if( !dst )
+        return;
     Component::onDuplicate( dst );
-    Body* c = XeCore::Common::IRtti::derivationCast< Component, Body >( dst );
+    if( !XeCore::Common::IRtti::isDerived< Body >( dst ) )
+        return;
+    Body* c = (Body*)dst;
     c->setVertices( getVertices() );
+    c->setDensity( getDensity() );
     c->setBodyType( getBodyType() );
     c->setLinearVelocity( getLinearVelocity() );
     c->setAngularVelocity( getAngularVelocity() );

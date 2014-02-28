@@ -135,8 +135,12 @@ void SpriteRenderer::onDeserialize( const std::string& property, const Json::Val
 
 void SpriteRenderer::onDuplicate( Component* dst )
 {
+    if( !dst )
+        return;
     Component::onDuplicate( dst );
-    SpriteRenderer* c = XeCore::Common::IRtti::derivationCast< Component, SpriteRenderer >( dst );
+    if( !XeCore::Common::IRtti::isDerived< SpriteRenderer >( dst ) )
+        return;
+    SpriteRenderer* c = (SpriteRenderer*)dst;
     c->setTexture( getTexture() );
     c->setSize( getSize() );
     c->setOrigin( getOrigin() );

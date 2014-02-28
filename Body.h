@@ -23,7 +23,9 @@ public:
     FORCEINLINE b2PolygonShape* getShape() { return m_shape; };
     FORCEINLINE VerticesData& getVertices() { return m_verts; };
     void setVertices( VerticesData& verts );
-    FORCEINLINE void applyVertices() { m_shape->Set( m_verts.data(), m_verts.size() ); };
+    void applyVertices();
+    FORCEINLINE float getDensity() { return m_density; };
+    FORCEINLINE void setDensity( float v ) { m_density = v; if( m_fixture ) m_fixture->SetDensity( v ); };
     FORCEINLINE b2BodyType getBodyType() { return m_body ? m_body->GetType() : m_bodyDef.type; };
     FORCEINLINE void setBodyType( b2BodyType v ) { if( m_body ) m_body->SetType( v ); else m_bodyDef.type = v; };
     FORCEINLINE b2Vec2 getLinearVelocity() { return m_body ? m_body->GetLinearVelocity() : m_bodyDef.linearVelocity; };
@@ -46,6 +48,7 @@ public:
     FORCEINLINE float getAngle() { return RADTODEG( m_body ? m_body->GetAngle() : m_bodyDef.angle ); };
 
     XeCore::Common::Property< VerticesData&, Body > Vertices;
+    XeCore::Common::Property< float, Body > Density;
     XeCore::Common::Property< b2BodyType, Body > BodyType;
     XeCore::Common::Property< b2Vec2, Body > LinearVelocity;
     XeCore::Common::Property< float, Body > AngularVelocity;
@@ -65,10 +68,11 @@ protected:
     virtual void onDuplicate( Component* dst );
 
 private:
+    float m_density;
     b2Body* m_body;
+    b2Fixture* m_fixture;
     b2PolygonShape* m_shape;
     b2BodyDef m_bodyDef;
-    b2FixtureDef m_fixtureDef;
     VerticesData m_verts;
 };
 
