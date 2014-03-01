@@ -26,24 +26,37 @@
             {
                "properties" : {
                   "Active" : true,
-                  "AngularDamping" : 0.0,
-                  "AngularVelocity" : 0.0,
-                  "BodyType" : "b2_dynamicBody",
-                  "Density" : 1.0,
-                  "GravityScale" : 1.0,
-                  "IsBullet" : false,
-                  "IsFixedRotation" : false,
-                  "IsSleepingAllowed" : true,
-                  "LinearDamping" : 0.0,
-                  "LinearVelocity" : [ 0.0, 0.0 ],
-                  "Vertices" : [
-                     [ -1.0, -1.0 ],
-                     [ 1.0, -1.0 ],
-                     [ 1.0, 1.0 ],
-                     [ -1.0, 1.0 ]
-                  ]
+                  "Position" : [ 0.0, 0.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
                },
-               "type" : "Body"
+               "type" : "Transform"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Size" : [ 512.0, 288.0 ],
+                  "Viewport" : [ 0.0, 0.0, 1.0, 1.0 ]
+               },
+               "type" : "Camera"
+            }
+         ],
+         "properties" : {
+            "Active" : true,
+            "Id" : "main-camera",
+            "Order" : 0
+         }
+      },
+      {
+         "components" : [
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Position" : [ 0.0, 0.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
             },
             {
                "properties" : {
@@ -62,11 +75,24 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ 0.0, 0.0 ],
-                  "Rotation" : 0.0,
-                  "Scale" : [ 1.0, 1.0 ]
+                  "AngularDamping" : 0.0,
+                  "AngularVelocity" : 0.0,
+                  "BodyType" : "b2_dynamicBody",
+                  "Density" : 1.0,
+                  "GravityScale" : 1.0,
+                  "IsBullet" : false,
+                  "IsFixedRotation" : false,
+                  "IsSleepingAllowed" : true,
+                  "LinearDamping" : 0.0,
+                  "LinearVelocity" : [ 0.0, 0.0 ],
+                  "Vertices" : [
+                     [ -1.0, -1.0 ],
+                     [ 1.0, -1.0 ],
+                     [ 1.0, 1.0 ],
+                     [ -1.0, 1.0 ]
+                  ]
                },
-               "type" : "Transform"
+               "type" : "Body"
             }
          ],
          "properties" : {
@@ -82,24 +108,37 @@
             {
                "properties" : {
                   "Active" : true,
-                  "AngularDamping" : 0.0,
-                  "AngularVelocity" : 0.0,
-                  "BodyType" : "b2_dynamicBody",
-                  "Density" : 1.0,
-                  "GravityScale" : 1.0,
-                  "IsBullet" : false,
-                  "IsFixedRotation" : false,
-                  "IsSleepingAllowed" : true,
-                  "LinearDamping" : 0.0,
-                  "LinearVelocity" : [ 0.0, 0.0 ],
-                  "Vertices" : [
-                     [ -1.0, -1.0 ],
-                     [ 1.0, -1.0 ],
-                     [ 1.0, 1.0 ],
-                     [ -1.0, 1.0 ]
-                  ]
+                  "Position" : [ 0.0, 0.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
                },
-               "type" : "Body"
+               "type" : "Transform"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Size" : [ 512.0, 288.0 ],
+                  "Viewport" : [ 0.0, 0.0, 1.0, 1.0 ]
+               },
+               "type" : "Camera"
+            }
+         ],
+         "properties" : {
+            "Active" : true,
+            "Id" : "main-camera",
+            "Order" : 1
+         }
+      },
+      {
+         "components" : [
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Position" : [ 0.0, 0.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
             },
             {
                "properties" : {
@@ -118,11 +157,24 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ 0.0, 0.0 ],
-                  "Rotation" : 0.0,
-                  "Scale" : [ 1.0, 1.0 ]
+                  "AngularDamping" : 0.0,
+                  "AngularVelocity" : 0.0,
+                  "BodyType" : "b2_dynamicBody",
+                  "Density" : 1.0,
+                  "GravityScale" : 1.0,
+                  "IsBullet" : false,
+                  "IsFixedRotation" : false,
+                  "IsSleepingAllowed" : true,
+                  "LinearDamping" : 0.0,
+                  "LinearVelocity" : [ 0.0, 0.0 ],
+                  "Vertices" : [
+                     [ -1.0, -1.0 ],
+                     [ 1.0, -1.0 ],
+                     [ 1.0, 1.0 ],
+                     [ -1.0, 1.0 ]
+                  ]
                },
-               "type" : "Transform"
+               "type" : "Body"
             }
          ],
          "properties" : {

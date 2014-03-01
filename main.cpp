@@ -1,16 +1,16 @@
 #include <iostream>
 #include <list>
 #include <sstream>
-#include "Assets.h"
-#include "Events.h"
-#include "GameManager.h"
-#include "GameObject.h"
-#include "Transform.h"
-#include "SpriteRenderer.h"
-#include <XeCore/Common/Base.h>
+#include <Ptakopysk/System/Assets.h>
+#include <Ptakopysk/System/Events.h>
+#include <Ptakopysk/System/GameManager.h>
+#include <Ptakopysk/System/GameObject.h>
+#include <Ptakopysk/Components/Transform.h>
+#include <Ptakopysk/Components/SpriteRenderer.h>
 #include <XeCore/Common/Logger.h>
 #include <XeCore/Common/Concurrent/Thread.h>
-#include <Box2D/Box2D.h>
+
+using namespace Ptakopysk;
 
 const int WINDOW_WIDTH = 1024;
 const int WINDOW_HEIGHT = 574;
@@ -33,11 +33,6 @@ int main()
         "Floppy Disk",
         sf::Style::Titlebar | sf::Style::Close
     );
-    sf::View* camera = xnew sf::View(
-        sf::Vector2f(),
-        sf::Vector2f( (float)window->getSize().x, (float)window->getSize().y )
-    );
-    camera->zoom( 0.5f );
 
     /// game manager
     GameManager* gameManager = xnew GameManager();
@@ -72,14 +67,12 @@ int main()
         gameManager->processPhysics( dt );
         gameManager->processUpdate( dt );
         window->clear( WINDOW_COLOR );
-        window->setView( *camera );
         gameManager->processRender( window );
         window->display();
         XeCore::Common::Concurrent::Thread::sleep( 1000 / 30 );
     }
 
     DELETE_OBJECT( window );
-    DELETE_OBJECT( camera );
     DELETE_OBJECT( gameManager );
     Assets::destroy();
     Events::destroy();

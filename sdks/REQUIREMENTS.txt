@@ -1,4 +1,0 @@
-Libraries required to build:
-* Xenon Core 3 SDK (GCC only)
-* SFML 2.1 Library (GCC)
-* Box2D 2.2.1 Library (GCC compiled libs)
