@@ -66,6 +66,25 @@
 					}
 				}
 			]
+		},
+		{
+			"properties": {
+				"Id": "title"
+			},
+			"components": [
+				{
+					"type": "Transform"
+				},
+				{
+					"type": "TextRenderer",
+					"properties": {
+						"Text": "Hello World!",
+						"Font": "font",
+						"Color": [ 0, 0, 0, 255 ],
+						"Size": 32
+					}
+				}
+			]
 		}
 	],
 	"scene": [
@@ -77,6 +96,20 @@
 		},
 		{
 			"prefab": "floppy"
+		},
+		{
+			"prefab": "title",
+			"properties": {
+				"Order": -1
+			},
+			"components": [
+				{
+					"type": "Transform",
+					"properties": {
+						"Position": [ -250, -150 ]
+					}
+				}
+			]
 		}
 	]
 }

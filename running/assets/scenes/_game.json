@@ -61,10 +61,11 @@
             {
                "properties" : {
                   "Active" : true,
+                  "Color" : [ 255, 255, 255, 255 ],
                   "Origin" : [ 16.0, 16.0 ],
                   "OriginPercent" : [ 0.50, 0.50 ],
                   "RenderStates" : {
-                     "blendMode" : 0,
+                     "blendMode" : "BlendAlpha",
                      "shader" : ""
                   },
                   "Size" : [ 32.0, 32.0 ],
@@ -98,6 +99,39 @@
          "properties" : {
             "Active" : true,
             "Id" : "floppy",
+            "Order" : 0
+         }
+      },
+      {
+         "components" : [
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Position" : [ 0.0, 0.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Color" : [ 0, 0, 0, 255 ],
+                  "Font" : "font",
+                  "RenderStates" : {
+                     "blendMode" : "BlendAlpha",
+                     "shader" : ""
+                  },
+                  "Size" : 30,
+                  "Style" : [ "Regular" ],
+                  "Text" : "Hello World!"
+               },
+               "type" : "TextRenderer"
+            }
+         ],
+         "properties" : {
+            "Active" : true,
+            "Id" : "title",
             "Order" : 0
          }
       }
@@ -143,10 +177,11 @@
             {
                "properties" : {
                   "Active" : true,
+                  "Color" : [ 255, 255, 255, 255 ],
                   "Origin" : [ 16.0, 16.0 ],
                   "OriginPercent" : [ 0.50, 0.50 ],
                   "RenderStates" : {
-                     "blendMode" : 0,
+                     "blendMode" : "BlendAlpha",
                      "shader" : ""
                   },
                   "Size" : [ 32.0, 32.0 ],
@@ -181,6 +216,39 @@
             "Active" : true,
             "Id" : "floppy",
             "Order" : 0
+         }
+      },
+      {
+         "components" : [
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Position" : [ -250.0, -150.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Color" : [ 0, 0, 0, 255 ],
+                  "Font" : "font",
+                  "RenderStates" : {
+                     "blendMode" : "BlendAlpha",
+                     "shader" : ""
+                  },
+                  "Size" : 30,
+                  "Style" : [ "Regular" ],
+                  "Text" : "Hello World!"
+               },
+               "type" : "TextRenderer"
+            }
+         ],
+         "properties" : {
+            "Active" : true,
+            "Id" : "title",
+            "Order" : -1
          }
       }
    ]
