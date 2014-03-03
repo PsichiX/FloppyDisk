@@ -95,19 +95,27 @@
 			}
 		},
 		{
-			"prefab": "floppy"
-		},
-		{
-			"prefab": "title",
-			"properties": {
-				"Order": -1
-			},
-			"components": [
+			"prefab": "floppy",
+			"gameObjects": [
 				{
-					"type": "Transform",
+					"prefab": "title",
 					"properties": {
-						"Position": [ -250, -150 ]
-					}
+						"Order": -1
+					},
+					"components": [
+						{
+							"type": "Transform",
+							"properties": {
+								"Position": [ -75, -50 ]
+							}
+						},
+						{
+							"type": "TextRenderer",
+							"properties": {
+								"Text": "Hi, i'm Floppy!"
+							}
+						}
+					]
 				}
 			]
 		}

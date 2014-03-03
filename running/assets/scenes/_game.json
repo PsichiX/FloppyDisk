@@ -212,43 +212,45 @@
                "type" : "Body"
             }
          ],
-         "properties" : {
-            "Active" : true,
-            "Id" : "floppy",
-            "Order" : 0
-         }
-      },
-      {
-         "components" : [
+         "gameObjects" : [
             {
-               "properties" : {
-                  "Active" : true,
-                  "Position" : [ -250.0, -150.0 ],
-                  "Rotation" : 0.0,
-                  "Scale" : [ 1.0, 1.0 ]
-               },
-               "type" : "Transform"
-            },
-            {
-               "properties" : {
-                  "Active" : true,
-                  "Color" : [ 0, 0, 0, 255 ],
-                  "Font" : "font",
-                  "RenderStates" : {
-                     "blendMode" : "BlendAlpha",
-                     "shader" : ""
+               "components" : [
+                  {
+                     "properties" : {
+                        "Active" : true,
+                        "Position" : [ -75.0, -50.0 ],
+                        "Rotation" : 0.0,
+                        "Scale" : [ 1.0, 1.0 ]
+                     },
+                     "type" : "Transform"
                   },
-                  "Size" : 30,
-                  "Style" : [ "Regular" ],
-                  "Text" : "Hello World!"
-               },
-               "type" : "TextRenderer"
+                  {
+                     "properties" : {
+                        "Active" : true,
+                        "Color" : [ 0, 0, 0, 255 ],
+                        "Font" : "font",
+                        "RenderStates" : {
+                           "blendMode" : "BlendAlpha",
+                           "shader" : ""
+                        },
+                        "Size" : 30,
+                        "Style" : [ "Regular" ],
+                        "Text" : "Hi, i'm Floppy!"
+                     },
+                     "type" : "TextRenderer"
+                  }
+               ],
+               "properties" : {
+                  "Active" : true,
+                  "Id" : "title",
+                  "Order" : -1
+               }
             }
          ],
          "properties" : {
             "Active" : true,
-            "Id" : "title",
-            "Order" : -1
+            "Id" : "floppy",
+            "Order" : 0
          }
       }
    ]
