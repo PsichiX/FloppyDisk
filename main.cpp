@@ -1,12 +1,7 @@
 #include <iostream>
-#include <list>
-#include <sstream>
 #include <Ptakopysk/System/Assets.h>
 #include <Ptakopysk/System/Events.h>
 #include <Ptakopysk/System/GameManager.h>
-#include <Ptakopysk/System/GameObject.h>
-#include <Ptakopysk/Components/Transform.h>
-#include <Ptakopysk/Components/SpriteRenderer.h>
 #include <XeCore/Common/Logger.h>
 #include <XeCore/Common/Concurrent/Thread.h>
 
