@@ -223,8 +223,8 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ -4.502665996551514, 0.0 ],
-                  "Rotation" : 0.0,
+                  "Position" : [ 75.98505401611328, 6.278036721596436e-007 ],
+                  "Rotation" : 3.474755794741213e-005,
                   "Scale" : [ 1.0, 1.0 ]
                },
                "type" : "Transform"
@@ -248,7 +248,7 @@
                "properties" : {
                   "Active" : true,
                   "AngularDamping" : 0.0,
-                  "AngularVelocity" : 0.0,
+                  "AngularVelocity" : -1.684361206066853e-009,
                   "BodyType" : "b2_dynamicBody",
                   "Density" : 1.0,
                   "GravityScale" : 1.0,
@@ -256,7 +256,7 @@
                   "IsFixedRotation" : false,
                   "IsSleepingAllowed" : true,
                   "LinearDamping" : 0.0,
-                  "LinearVelocity" : [ 35.49623870849609, 0.0 ],
+                  "LinearVelocity" : [ 8.140680512504217e-014, 2.696235412713577e-008 ],
                   "Vertices" : [
                      [ -16.0, -16.0 ],
                      [ 16.0, -16.0 ],
