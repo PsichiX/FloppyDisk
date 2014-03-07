@@ -32,7 +32,8 @@
 				{
 					"type": "Camera",
 					"properties": {
-						"Size": [ 512, 288 ]
+						"Size": [ 1024, 576 ],
+						"Zoom": 2.0
 					}
 				}
 			]

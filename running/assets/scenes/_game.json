@@ -35,8 +35,10 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Size" : [ 512.0, 288.0 ],
-                  "Viewport" : [ 0.0, 0.0, 1.0, 1.0 ]
+                  "Size" : [ 1024.0, 576.0 ],
+                  "Viewport" : [ 0.0, 0.0, 1.0, 1.0 ],
+                  "Zoom" : 2.0,
+                  "ZoomOut" : 0.50
                },
                "type" : "Camera"
             }
@@ -206,8 +208,10 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Size" : [ 512.0, 288.0 ],
-                  "Viewport" : [ 0.0, 0.0, 1.0, 1.0 ]
+                  "Size" : [ 1024.0, 576.0 ],
+                  "Viewport" : [ 0.0, 0.0, 1.0, 1.0 ],
+                  "Zoom" : 2.0,
+                  "ZoomOut" : 0.50
                },
                "type" : "Camera"
             }
@@ -223,8 +227,8 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ 75.98505401611328, 8.695262749824906e-007 ],
-                  "Rotation" : 3.471030140644871e-005,
+                  "Position" : [ -86.90016174316406, 0.0 ],
+                  "Rotation" : 0.0,
                   "Scale" : [ 1.0, 1.0 ]
                },
                "type" : "Transform"
@@ -248,7 +252,7 @@
                "properties" : {
                   "Active" : true,
                   "AngularDamping" : 0.0,
-                  "AngularVelocity" : 2.561162405305395e-016,
+                  "AngularVelocity" : 0.0,
                   "BodyType" : "b2_dynamicBody",
                   "Density" : 1.0,
                   "GravityScale" : 1.0,
@@ -256,7 +260,7 @@
                   "IsFixedRotation" : false,
                   "IsSleepingAllowed" : true,
                   "LinearDamping" : 0.0,
-                  "LinearVelocity" : [ -8.079114266479337e-009, 3.957350003247484e-009 ],
+                  "LinearVelocity" : [ 16.01560020446777, 0.0 ],
                   "Vertices" : [
                      [ -16.0, -16.0 ],
                      [ 16.0, -16.0 ],
