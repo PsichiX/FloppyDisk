@@ -1,9 +1,9 @@
-#include <iostream>
 #include <Ptakopysk/System/Assets.h>
 #include <Ptakopysk/System/Events.h>
 #include <Ptakopysk/System/GameManager.h>
 #include <XeCore/Common/Logger.h>
 #include <XeCore/Common/Concurrent/Thread.h>
+#include "Collider.h"
 
 using namespace Ptakopysk;
 
@@ -21,6 +21,7 @@ int main()
     LOG_SETUP( "log.log" );
     Events::use().setCallback( &onEvent );
     GameManager::initialize();
+    GameManager::registerComponentFactory( "Collider", RTTI_CLASS_TYPE( Collider ), Collider::onBuildComponent );
 
     /// scene
     sf::RenderWindow* window = xnew sf::RenderWindow(

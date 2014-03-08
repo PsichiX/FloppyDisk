@@ -65,6 +65,12 @@
 							[ -16, 16 ]
 						]
 					}
+				},
+				{
+					"type": "Collider",
+					"properties": {
+						"AlphaWhenCollide": 0.6
+					}
 				}
 			]
 		},
@@ -113,6 +119,12 @@
 							[ 8, 32 ],
 							[ -8, 32 ]
 						]
+					}
+				},
+				{
+					"type": "Collider",
+					"properties": {
+						"AlphaWhenCollide": 0.3
 					}
 				}
 			]

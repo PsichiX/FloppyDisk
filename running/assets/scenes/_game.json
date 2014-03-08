@@ -54,11 +54,9 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ 0.0, 0.0 ],
-                  "Rotation" : 0.0,
-                  "Scale" : [ 1.0, 1.0 ]
+                  "AlphaWhenCollide" : 0.6000000238418579
                },
-               "type" : "Transform"
+               "type" : "Collider"
             },
             {
                "properties" : {
@@ -74,6 +72,15 @@
                   "Texture" : "floppy"
                },
                "type" : "SpriteRenderer"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Position" : [ 0.0, 0.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
             },
             {
                "properties" : {
@@ -142,11 +149,9 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ 0.0, 0.0 ],
-                  "Rotation" : 0.0,
-                  "Scale" : [ 1.0, 1.0 ]
+                  "AlphaWhenCollide" : 0.3000000119209290
                },
-               "type" : "Transform"
+               "type" : "Collider"
             },
             {
                "properties" : {
@@ -162,6 +167,15 @@
                   "Texture" : "magnet"
                },
                "type" : "SpriteRenderer"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Position" : [ 0.0, 0.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
             },
             {
                "properties" : {
@@ -227,16 +241,14 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ -86.90016174316406, 0.0 ],
-                  "Rotation" : 0.0,
-                  "Scale" : [ 1.0, 1.0 ]
+                  "AlphaWhenCollide" : 0.6000000238418579
                },
-               "type" : "Transform"
+               "type" : "Collider"
             },
             {
                "properties" : {
                   "Active" : true,
-                  "Color" : [ 255, 255, 255, 255 ],
+                  "Color" : [ 255, 255, 255, 153 ],
                   "Origin" : [ 16.0, 16.0 ],
                   "OriginPercent" : [ 0.50, 0.50 ],
                   "RenderStates" : {
@@ -251,6 +263,15 @@
             {
                "properties" : {
                   "Active" : true,
+                  "Position" : [ 75.98503875732422, 5.454466531773505e-007 ],
+                  "Rotation" : 1.526188316347543e-005,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
                   "AngularDamping" : 0.0,
                   "AngularVelocity" : 0.0,
                   "BodyType" : "b2_dynamicBody",
@@ -260,7 +281,7 @@
                   "IsFixedRotation" : false,
                   "IsSleepingAllowed" : true,
                   "LinearDamping" : 0.0,
-                  "LinearVelocity" : [ 16.01560020446777, 0.0 ],
+                  "LinearVelocity" : [ 0.0, 0.0 ],
                   "Vertices" : [
                      [ -16.0, -16.0 ],
                      [ 16.0, -16.0 ],
@@ -317,16 +338,14 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ 100.0, 0.0 ],
-                  "Rotation" : 0.0,
-                  "Scale" : [ 1.0, 1.0 ]
+                  "AlphaWhenCollide" : 0.3000000119209290
                },
-               "type" : "Transform"
+               "type" : "Collider"
             },
             {
                "properties" : {
                   "Active" : true,
-                  "Color" : [ 255, 255, 255, 255 ],
+                  "Color" : [ 255, 255, 255, 76 ],
                   "Origin" : [ 8.0, 32.0 ],
                   "OriginPercent" : [ 0.50, 0.50 ],
                   "RenderStates" : {
@@ -337,6 +356,15 @@
                   "Texture" : "magnet"
                },
                "type" : "SpriteRenderer"
+            },
+            {
+               "properties" : {
+                  "Active" : true,
+                  "Position" : [ 100.0, 0.0 ],
+                  "Rotation" : 0.0,
+                  "Scale" : [ 1.0, 1.0 ]
+               },
+               "type" : "Transform"
             },
             {
                "properties" : {

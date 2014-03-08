@@ -1,4 +1,4 @@
 FloppyDisk
 ==========
 
-Flappy Bird game variation
+Flappy Bird game variation based on: Ptakopysk Framework (https://github.com/PsichiX/Ptakopysk)
