@@ -20,24 +20,25 @@ public:
 	FORCEINLINE static Component* onBuildComponent() { return xnew Collider(); }
 
     /// properties methods.
-	FORCEINLINE float getAlphaWhenCollide() { return m_alphaWhenCollide; };
-	FORCEINLINE void setAlphaWhenCollide( float v ) { m_alphaWhenCollide = v; };
+	FORCEINLINE float getAlpha() { return m_alpha; };
+	void setAlpha( float v );
 
     /// properties.
-	XeCore::Common::Property< float, Collider > AlphaWhenCollide;
+	XeCore::Common::Property< float, Collider > Alpha;
 
 protected:
     /// serialization.
 	virtual Json::Value onSerialize( const std::string& property );
 	virtual void onDeserialize( const std::string& property, const Json::Value& root );
 
-    /// events.
+	/// events.
+	virtual void onDestroy();
 	virtual void onDuplicate( Component* dst );
 	virtual void onCollide( GameObject* other, bool beginOrEnd, b2Contact* contact );
 
 private:
     /// data.
-	float m_alphaWhenCollide;
+	float m_alpha;
 };
 
 #endif

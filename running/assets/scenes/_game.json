@@ -54,7 +54,7 @@
             {
                "properties" : {
                   "Active" : true,
-                  "AlphaWhenCollide" : 0.6000000238418579
+                  "Alpha" : 1.0
                },
                "type" : "Collider"
             },
@@ -149,7 +149,7 @@
             {
                "properties" : {
                   "Active" : true,
-                  "AlphaWhenCollide" : 0.3000000119209290
+                  "Alpha" : 1.0
                },
                "type" : "Collider"
             },
@@ -241,14 +241,14 @@
             {
                "properties" : {
                   "Active" : true,
-                  "AlphaWhenCollide" : 0.6000000238418579
+                  "Alpha" : 0.250
                },
                "type" : "Collider"
             },
             {
                "properties" : {
                   "Active" : true,
-                  "Color" : [ 255, 255, 255, 153 ],
+                  "Color" : [ 255, 255, 255, 63 ],
                   "Origin" : [ 16.0, 16.0 ],
                   "OriginPercent" : [ 0.50, 0.50 ],
                   "RenderStates" : {
@@ -263,8 +263,8 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Position" : [ 75.98503875732422, 5.454466531773505e-007 ],
-                  "Rotation" : 1.526188316347543e-005,
+                  "Position" : [ 75.98503875732422, 1.731120562453725e-007 ],
+                  "Rotation" : 1.526198138890322e-005,
                   "Scale" : [ 1.0, 1.0 ]
                },
                "type" : "Transform"
@@ -338,14 +338,14 @@
             {
                "properties" : {
                   "Active" : true,
-                  "AlphaWhenCollide" : 0.3000000119209290
+                  "Alpha" : 0.250
                },
                "type" : "Collider"
             },
             {
                "properties" : {
                   "Active" : true,
-                  "Color" : [ 255, 255, 255, 76 ],
+                  "Color" : [ 255, 255, 255, 63 ],
                   "Origin" : [ 8.0, 32.0 ],
                   "OriginPercent" : [ 0.50, 0.50 ],
                   "RenderStates" : {

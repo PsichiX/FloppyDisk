@@ -1,5 +1,6 @@
 #include <Ptakopysk/System/Assets.h>
 #include <Ptakopysk/System/Events.h>
+#include <Ptakopysk/System/Tween.h>
 #include <Ptakopysk/System/GameManager.h>
 #include <XeCore/Common/Logger.h>
 #include <XeCore/Common/Concurrent/Thread.h>
@@ -60,6 +61,7 @@ int main()
 
         /// process frame
         Events::use().dispatch();
+        Tweener::use().processTweens( dt );
         gameManager->processPhysics( dt );
         gameManager->processUpdate( dt );
         window->clear( WINDOW_COLOR );
@@ -75,6 +77,7 @@ int main()
     DELETE_OBJECT( gameManager );
     Assets::destroy();
     Events::destroy();
+    Tweener::destroy();
 
     return 0;
 }

@@ -56,6 +56,8 @@
 			<Add option="-DSFML_STATIC" />
 			<Add directory="../Ptakopysk/sdk/include" />
 		</Compiler>
+		<Unit filename="Collider.cpp" />
+		<Unit filename="Collider.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
