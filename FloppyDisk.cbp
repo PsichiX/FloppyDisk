@@ -17,14 +17,15 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="..\Ptakopysk\sdk\lib\libPtakopysk-d.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libsfml-audio-s-d.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libsfml-graphics-s-d.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libsfml-window-s-d.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libsfml-system-s-d.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libBox2D-d.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libJsonCpp-d.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libXenonCore3-d.a" />
+					<Add library="libPtakopysk-d.a" />
+					<Add library="libsfml-audio-s-d.a" />
+					<Add library="libsfml-graphics-s-d.a" />
+					<Add library="libsfml-window-s-d.a" />
+					<Add library="libsfml-system-s-d.a" />
+					<Add library="libBox2D-d.a" />
+					<Add library="libJsonCpp-d.a" />
+					<Add library="libBinaryJson-d.a" />
+					<Add library="libXenonCore3-d.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -39,14 +40,15 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="..\Ptakopysk\sdk\lib\libPtakopysk.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libsfml-audio-s.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libsfml-graphics-s.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libsfml-window-s.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libsfml-system-s.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libBox2D.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libJsonCpp.a" />
-					<Add library="..\Ptakopysk\sdk\lib\libXenonCore3.a" />
+					<Add library="libPtakopysk.a" />
+					<Add library="libsfml-audio-s.a" />
+					<Add library="libsfml-graphics-s.a" />
+					<Add library="libsfml-window-s.a" />
+					<Add library="libsfml-system-s.a" />
+					<Add library="libBox2D.a" />
+					<Add library="libJsonCpp.a" />
+					<Add library="libBinaryJson.a" />
+					<Add library="libXenonCore3.a" />
 				</Linker>
 			</Target>
 		</Build>
@@ -56,6 +58,9 @@
 			<Add option="-DSFML_STATIC" />
 			<Add directory="../Ptakopysk/sdk/include" />
 		</Compiler>
+		<Linker>
+			<Add directory="../Ptakopysk/sdk/lib" />
+		</Linker>
 		<Unit filename="Collider.cpp" />
 		<Unit filename="Collider.h" />
 		<Unit filename="main.cpp" />
