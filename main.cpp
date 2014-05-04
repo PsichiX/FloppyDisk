@@ -33,6 +33,7 @@ int main()
 
     /// game manager
     GameManager* gameManager = xnew GameManager();
+    gameManager->RenderWindow = window;
     /// deserialize JSON to scene
     gameManager->jsonToScene( GameManager::loadJson( "assets/scenes/game.json" ) );
 

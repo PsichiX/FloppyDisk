@@ -36,7 +36,7 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Size" : [ 1024.0, 576.0 ],
+                  "Size" : [ -1.0, -1.0 ],
                   "Viewport" : [ 0.0, 0.0, 1.0, 1.0 ],
                   "Zoom" : 2.0,
                   "ZoomOut" : 0.50
@@ -97,6 +97,7 @@
                   "IsSleepingAllowed" : true,
                   "LinearDamping" : 0.0,
                   "LinearVelocity" : [ 0.0, 0.0 ],
+                  "Radius" : 0.0,
                   "Vertices" : [
                      [ -16.0, -16.0 ],
                      [ 16.0, -16.0 ],
@@ -194,6 +195,7 @@
                   "IsSleepingAllowed" : true,
                   "LinearDamping" : 0.0,
                   "LinearVelocity" : [ 0.0, 0.0 ],
+                  "Radius" : 0.0,
                   "Vertices" : [
                      [ -8.0, -32.0 ],
                      [ 8.0, -32.0 ],
@@ -227,7 +229,7 @@
             {
                "properties" : {
                   "Active" : true,
-                  "Size" : [ 1024.0, 576.0 ],
+                  "Size" : [ 1024.0, 574.0 ],
                   "Viewport" : [ 0.0, 0.0, 1.0, 1.0 ],
                   "Zoom" : 2.0,
                   "ZoomOut" : 0.50
@@ -269,8 +271,8 @@
                "properties" : {
                   "Active" : true,
                   "Mode" : "mHierarchy",
-                  "Position" : [ 75.98503875732422, 6.793734996790590e-007 ],
-                  "Rotation" : 1.526432242826559e-005,
+                  "Position" : [ 76.01165771484375, 0.003965190611779690 ],
+                  "Rotation" : 0.001457249163649976,
                   "Scale" : [ 1.0, 1.0 ]
                },
                "type" : "Transform"
@@ -288,6 +290,7 @@
                   "IsSleepingAllowed" : true,
                   "LinearDamping" : 0.0,
                   "LinearVelocity" : [ 0.0, 0.0 ],
+                  "Radius" : 0.0,
                   "Vertices" : [
                      [ -16.0, -16.0 ],
                      [ 16.0, -16.0 ],
@@ -387,6 +390,7 @@
                   "IsSleepingAllowed" : true,
                   "LinearDamping" : 0.0,
                   "LinearVelocity" : [ 0.0, 0.0 ],
+                  "Radius" : 0.0,
                   "Vertices" : [
                      [ -8.0, -32.0 ],
                      [ 8.0, -32.0 ],
